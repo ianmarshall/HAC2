@@ -20,9 +20,9 @@ namespace HAC.Domain.Repositories
         {
             using (ISession session = DataConfig.GetSession())
             {
-                Member member = session.Query<Member>().FirstOrDefault(m => m.Email == email);
+                //Member member = session.Query<Member>().FirstOrDefault(m => m.Email == email);
 
-                return member;
+                return new Member();
 
                
             }

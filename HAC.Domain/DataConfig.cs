@@ -10,6 +10,8 @@ namespace HAC.Domain
     public class DataConfig
     {
         private static ISessionFactory _sessionFactory;
+        public static Configuration cfg;
+
         private static bool _startupComplete = false;
         private static readonly object _locker = new object();
 
@@ -19,9 +21,7 @@ namespace HAC.Domain
             {
                 InitializeSessionFactory();
             }
-            ISession session = _sessionFactory.OpenSession();
-            session.BeginTransaction();
-            return session;
+            return _sessionFactory.GetCurrentSession();
         }
 
         public static void EnsureStartup()
@@ -33,6 +33,7 @@ namespace HAC.Domain
                 DataConfig.PerformStartup();
                 _startupComplete = true;
             }
+
         }
 
 
@@ -47,7 +48,7 @@ namespace HAC.Domain
         private static void InitializeSessionFactory()
         {
            // NHibernate.Cfg.Environment.UseReflectionOptimizer = false;
-            var cfg = new Configuration();
+            cfg = new Configuration();
             cfg.Configure();
             cfg.AddAssembly(typeof(Member).Assembly);
             //cfg.AddAssembly(typeof(Events).Assembly);

@@ -19,9 +19,9 @@ namespace HAC.Domain.Repositories
         {
             using (ISession session = DataConfig.GetSession())
             {
-               var recentEvents =
-                    session.CreateCriteria<Events>().SetMaxResults(numberOfEvents);
-                recentEvents.List();
+               //var recentEvents =
+               //     session.CreateCriteria<Events>().SetMaxResults(numberOfEvents);
+               // recentEvents.List();
 
                 return new List<Events>();
             }
