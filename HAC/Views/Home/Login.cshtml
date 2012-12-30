@@ -1,0 +1,22 @@
+﻿@model HAC.Models.ViewModelMember
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Login</h2>
+
+<body id="loginpage">
+     <form method="post" 
+          action="/AccountController/SignIn">
+        <fieldset>
+            <label for="email">Email</label>
+            <input type="text" name="username" id="username" value="" class="text ui-widget-content ui-corner-all" />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+            <input type="submit"/>
+        </fieldset>
+    </form>
+</body>

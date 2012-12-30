@@ -1,0 +1,79 @@
+﻿<script>
+    $(document).ready(function () {
+        $(".signin a").click(function() {
+            openDialog();
+        });
+
+        function openDialog() {
+            $("#signindiv").dialog({
+                modal: true,
+                minWidth: 300,
+                buttons: {
+                    Submit: function () {
+                        $("#signinform").submit();
+                    }
+                }
+            });
+        };
+ 
+      
+        if ($("#loginpage").length > 0) {
+            openDialog();
+        }
+
+            
+        $('#signinform').submit(function (event) {
+            event.preventDefault();
+            $('#errormessage').text(" ");
+            $("*").removeClass("ui-state-error");
+            var $form = $(this),
+                username = $form.find('input[name="username"]').val(),
+                password = $form.find('input[name="password"]').val(),
+                url = $(this).attr('action');
+            if (username == "") {
+                $form.find('input[name="username"]').addClass("ui-state-error");
+                $('#errormessage').text("Please enter a username");
+                return;
+            }
+            if (password == "") {
+                $form.find('input[name="password"]').addClass("ui-state-error");
+                $('#errormessage').text("Please enter a password");
+                return;
+            }
+            $("*").addClass("busy");
+            $.post(url, { username: username, password: password }, function (response) {
+                $("*").removeClass("busy");
+                if (response.success) {
+                    window.location.href = response.redirect;
+                  
+                    return;
+                }
+                $('#errormessage').text(response.error);
+            });
+
+        });
+
+    });
+
+</script>
+           
+
+<div class="signin"><a id="signin" href="#">Sign in</a></div>
+
+<div id="signindiv" class="signin" title="Sign in with your HAC ID" style="display: none">
+    <p class="validateTips" id="errormessage">All form fields are required.</p>
+    <form method="post" id="signinform"
+          action="@Url.Action("SignIn", "Account")">
+        <fieldset>
+            <label for="email">Email</label>
+            <input type="text" name="username" id="username" value="" class="text ui-widget-content ui-corner-all" />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+            @*   <input type="submit" value="Sign in"/>*@
+        </fieldset>
+    </form>
+   
+</div>
+
+
+

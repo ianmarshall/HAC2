@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"  default-lazy="false" assembly="HAC.Domain" namespace="HAC.Domain">
+    <class name="Member">
+        <id name ="Id" type ="int">
+            <column name="Id"/>
+        </id>
+        <property name="ForeName" not-null="true" />
+        <property name="SurName" not-null="true" />
+        <property name="Email" />
+        <property name="Phone"/>
+        <property name="Password"/>
+        <property name="DOB"/>
+        <property name="Sex"/>
+        <property name="Access"/>
+      <property name="OldId"/>
+      <property name="MembershipType"/>
+      <property name="MembershipId"/>
+        <!--<one-to-one name="Profile"
+			class="Profile"
+            constrained="false"
+	foreign-key="none"/>-->
+    </class>
+</hibernate-mapping>

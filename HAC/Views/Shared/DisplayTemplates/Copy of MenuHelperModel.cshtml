@@ -1,0 +1,35 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.MenuHelperModel
+@using System.Linq
+@using System.Web.Mvc.Html
+@using MvcSiteMapProvider.Web.Html.Models
+
+<ul class="nav">
+    @foreach (var node in Model.Nodes)
+    {
+        if (node.IsCurrentNode || node.Children.FirstOrDefault(x => x.IsCurrentNode) != null)
+        {
+            
+                 <li>@Html.DisplayFor(m => node)
+                <ul class="sub-nav">
+                    @foreach (var child in node.Children)
+                    {
+                        if (child.IsCurrentNode)
+                        {
+                             <li>@Html.DisplayFor(m => child)</li>@*
+                            <li>@child.Title</li>*@
+                             
+                        }
+                        else
+                        {
+                            <li>@Html.DisplayFor(m => child)</li>
+                        }
+                    }
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li>@Html.DisplayFor(m => node)</li>
+        }
+    }
+</ul>

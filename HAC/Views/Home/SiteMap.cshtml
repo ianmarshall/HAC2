@@ -1,0 +1,49 @@
+﻿
+<head>
+     
+    <!-- Sitemap Styler -->
+<link href="@Url.Content("~/Scripts/sitemapstyler/sitemapstyler.css")" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/sitemapstyler/sitemapstyler.js")"></script>
+<!-- end -->
+</head>
+
+<style>
+    
+
+    a {
+        text-decoration: none;
+        color: #057fac;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #999;
+    }
+
+  
+
+    #container1 {
+        margin: 0 auto;
+        width: 680px;
+        background: #fff;
+        padding-bottom: 20px;
+    }
+
+    #content1 {
+        margin: 10px 20px;
+    }
+
+   
+  
+</style>
+
+<div id="container1">
+    <h2>SiteMap</h2>
+    <div id="content1">
+
+        <noscript>
+            <p><strong>Sorry, this page needs JavaScript to make any sense at all</strong></p>
+        </noscript>
+        @Html.MvcSiteMap().SiteMap(true)
+    </div>
+</div>

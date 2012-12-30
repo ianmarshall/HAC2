@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0 MvcSiteMapSchema.xsd"
+            enableLocalization="true">
+
+  <mvcSiteMapNode title="HOME" controller="Home" action="Index">
+    <mvcSiteMapNode title="ABOUTUS" controller="AboutUs" action="Index">
+      <mvcSiteMapNode title="Membership" controller="AboutUs" action="Membership"/>
+      <mvcSiteMapNode title="Club Kit" controller="AboutUs" action="ClubKit"/>
+      <mvcSiteMapNode title="Contacts" controller="AboutUs" action="Contacts"/>
+      <mvcSiteMapNode title="History" controller="AboutUs" action="History"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="EVENTS" controller="Events" action="Index"/>
+    <mvcSiteMapNode title="JUNIORS" controller="Juniors" action="Index"/>
+    <mvcSiteMapNode title="TRACK &amp; FIELD" controller="TrackAndField" action="Index"/>
+    <mvcSiteMapNode title="ROAD RUNNERS" controller="RoadRunners" action="Index"/>
+    <mvcSiteMapNode title="RECORDS &amp; PBs" controller="Records" action="Index"/>
+
+    <mvcSiteMapNode title="ST IVES 10K" controller="StIves10k" action="Index">
+      <mvcSiteMapNode title="Info" controller="StIves10k" action="Info"/>
+      <mvcSiteMapNode title="Entry" controller="StIves10k" action="Entry"/>
+      <mvcSiteMapNode title="Results" controller="StIves10k" action="Info"/>
+    </mvcSiteMapNode>
+
+    <!--<mvcSiteMapNode title="Login" controller="Home" action="Login"/>-->
+
+
+
+  </mvcSiteMapNode>
+</mvcSiteMap>

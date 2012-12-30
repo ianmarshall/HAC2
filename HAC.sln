@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAC.Web", "HAC\HAC.Web.csproj", "{41A686C8-8657-4FD2-858F-6F5D704A9377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAC.Domain", "HAC.Domain\HAC.Domain.csproj", "{C8AA276C-516C-4125-ABC6-E859AE2D883A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HAC.Tests", "HAC.Tests\HAC.Tests.csproj", "{C9E38360-4BBB-4C93-8054-C189B8DE84EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41A686C8-8657-4FD2-858F-6F5D704A9377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A686C8-8657-4FD2-858F-6F5D704A9377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A686C8-8657-4FD2-858F-6F5D704A9377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A686C8-8657-4FD2-858F-6F5D704A9377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8AA276C-516C-4125-ABC6-E859AE2D883A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8AA276C-516C-4125-ABC6-E859AE2D883A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8AA276C-516C-4125-ABC6-E859AE2D883A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8AA276C-516C-4125-ABC6-E859AE2D883A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E38360-4BBB-4C93-8054-C189B8DE84EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E38360-4BBB-4C93-8054-C189B8DE84EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E38360-4BBB-4C93-8054-C189B8DE84EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E38360-4BBB-4C93-8054-C189B8DE84EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

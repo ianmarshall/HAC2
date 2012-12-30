@@ -1,0 +1,35 @@
+#main {width:100%; min-width:1000px; position:relative; background:#e8e7e4; margin:0 auto;}
+
+/*----!!!-----*/
+#main-width { width:100%; margin:0 auto;}
+/*----!!!-----*/
+
+#header {height:150px; background:url(images/header-bg.jpg) left top repeat-x; padding:0 10px;}
+#header, #content { font-size:0.69em;}
+
+.col-1, .col-2, .col-3, .col-4 { float:left;}
+
+/*======= index.html =======*/
+#page1 #content .row-1 .col-1 { float:none; margin-right:245px;}
+#page1 #content .row-1 .col-2 { margin-left:-245px; width:245px; text-align:right;}
+#page1 #content .row-2 .col-1 { float:none; margin-right:245px;}
+#page1 #content .row-2 .col-2 { margin-left:-245px; width:245px; padding-top:18px;}
+#page1 #content .row-2 .col-1 .col-1 { width:51%; float:left; margin:0;}
+#page1 #content .row-2 .col-1 .col-2 { width:49%; margin:0; padding:0;}
+
+/*======= index-1.html =======*/
+#page2 #content .row-1 .col-1 { width:51%;}
+#page2 #content .row-1 .col-2 { width:49%;}
+#page2 #content .row-2 .col-1 { width:33%;}
+#page2 #content .row-2 .col-2 { width:33%;}
+#page2 #content .row-2 .col-3 { width:33%;}
+#page2 #content .row-3 .col-1 { width:25%;}
+#page2 #content .row-3 .col-2 { width:25%;}
+#page2 #content .row-3 .col-3 { width:25%;}
+#page2 #content .row-3 .col-4 { width:24%;}
+
+
+/*=========================*/
+
+
+#footer {height:129px; background:url(images/footer-bg.jpg) left top repeat-x; font-size:.625em;}
