@@ -1,0 +1,104 @@
+﻿@using HAC.Domain
+@model HAC.Models.PhotosModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<table border="0" cellspacing="2" cellpadding="2" align="center">
+    <tr class="generalTextBold"> 
+      <td align="left" valign="top">There are @Model.PicCount pictures in @Model.CatCount categories</td>
+    </tr>
+    <tr> 
+      <form method="post" action="" name="form1" enctype="multipart/form-data">
+        <td align="left" valign="top"> 
+          <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#000000">
+            <tr> 
+              <td align="left" valign="top" bgcolor="#CCCCCC"> 
+                <table width="100%" border="2" cellspacing="0" cellpadding="0" bordercolor="#999999" bgcolor="#999999">
+                  <tr class="generalTextBold"> 
+                    <td>To add your picture to our server, please fill out the 
+                      form below:</td>
+                  </tr>
+                  <tr> 
+                    <td> 
+                      <table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#000000">
+                        <tr> 
+                          <td align="left" valign="top" bgcolor="#CCCCCC"> 
+                            <table align="center" cellpadding="3" cellspacing="3">
+                              <tr valign="middle" align="left" class="generalTextBold"> 
+                                <td nowrap colspan="2"><font color="#FF0000"> 
+                                  - </font><font color="#FF0000">All fields are 
+                                  required. <br>
+                                  <font color="#FF0000"> - Picture's width is 
+                                  NOT larger than 640 pixel or smaller than 150 
+                                  pixel<br>
+                                  - Picture's height is NOT larger than 480 <font color="#FF0000">pixel</font> 
+                                  or smaller than 100</font> <font color="#FF0000">pixel</font></font></td>
+                              </tr>
+                              <tr valign="middle" class="generalTextBold"> 
+                                <td nowrap align="right"><font color="#333333">CATEGORY: 
+                                  </font></td>
+                                <td> 
+                                  <select name="PIC_CAT" class="Fields">
+                                    @foreach (pic_categories cat in Model.Categorieses)
+                                    {
+
+                                        <option value="@cat.CAT_ID" >@cat.CAT_NAME</option>
+                                    }
+                                  </select>
+                                </td>
+                              </tr>
+                              <tr valign="middle"> 
+                                <td nowrap align="right" class="generalTextBold"><font color="#333333">NAME: 
+                                  </font></td>
+                                <td class="generalText"> 
+                                  <input type="text" name="PIC_NAME" value="" size="20" maxlength="20" class="Fields">
+                                  <font color="#999999"><i><font color="#666666">(Maximum 
+                                  20 charaters)</font></i></font></td>
+                              </tr>
+                              <tr valign="middle" class="generalTextBold"> 
+                                <td nowrap align="right"><font color="#333333">PICTURE: 
+                                  </font></td>
+                                <td> 
+                                  <input type="file" name="imageFile" size="35" class="Fields">
+                                </td>
+                              </tr>
+                              <tr valign="middle" class="generalTextBold"> 
+                                <td nowrap align="right" valign="top"><font color="#333333">DESCRIPTION: 
+                                  </font></td>
+                                <td> 
+                                  <textarea name="PIC_DESC" cols="50" rows="5" class="Fields"></textarea>
+                                </td>
+                              </tr>
+                              <tr valign="middle"> 
+                                <td nowrap align="right"> 
+                                  <input type="hidden" name="PIC_VIEW" value="0">
+                                  <input type="hidden" name="PIC_WIDTH">
+                                  <input type="hidden" name="PIC_HEIGHT">
+                                  <input type="hidden" name="PIC_APPROVED" value="0">
+                                  <input type="hidden" name="MM_insert" value="true">
+                                </td>
+                                <td> 
+                                  <input type="submit" value="Submit" name="submit" class="Buttons">
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </form>
+    </tr>
+    <tr class="generalText"> 
+      <td align="center" valign="middle"><a href="default.asp">GALLERY</a> | <a href="add.asp">ADD 
+        A PICTURE</a></td>
+    </tr>
+  </table>

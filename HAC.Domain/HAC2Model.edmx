@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="dboModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="dboModelStoreContainer">
+          <EntitySet Name="events" EntityType="dboModel.Store.events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="links" EntityType="dboModel.Store.links" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="member" EntityType="dboModel.Store.member" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="membership" EntityType="dboModel.Store.membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pic_categories" EntityType="dboModel.Store.pic_categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pic_groups" EntityType="dboModel.Store.pic_groups" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pic_images" EntityType="dboModel.Store.pic_images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="profile" EntityType="dboModel.Store.profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="results" EntityType="dboModel.Store.results" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CAT_ID" Association="dboModel.Store.FK_CAT_ID">
+            <End Role="pic_categories" EntitySet="pic_categories" />
+            <End Role="pic_images" EntitySet="pic_images" />
+          </AssociationSet>
+          <AssociationSet Name="fk_group_id" Association="dboModel.Store.fk_group_id">
+            <End Role="pic_groups" EntitySet="pic_groups" />
+            <End Role="pic_categories" EntitySet="pic_categories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="events">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="subject" Type="varchar" MaxLength="50" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Month" Type="varchar" MaxLength="50" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Location" Type="varchar" MaxLength="75" />
+          <Property Name="Description" Type="mediumtext" />
+          <Property Name="URL" Type="varchar" MaxLength="150" />
+          <Property Name="show_news" Type="varchar" MaxLength="80" />
+          <Property Name="news1" Type="mediumtext" />
+          <Property Name="news2" Type="mediumtext" />
+          <Property Name="resultid" Type="int" />
+          <Property Name="photo" Type="mediumblob" />
+          <Property Name="ImgS" Type="varchar" MaxLength="150" />
+          <Property Name="ImgB" Type="varchar" MaxLength="150" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+          <Property Name="mid" Type="int" />
+          <Property Name="show_results" Type="varchar" MaxLength="50" />
+          <Property Name="udate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="links">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar" MaxLength="255" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="220" />
+          <Property Name="image" Type="mediumblob" />
+          <Property Name="mid" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="photo" Type="mediumblob" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ForeName" Type="varchar" MaxLength="510" />
+          <Property Name="SurName" Type="varchar" MaxLength="510" />
+          <Property Name="Email" Type="varchar" MaxLength="510" />
+          <Property Name="Phone" Type="varchar" MaxLength="510" />
+          <Property Name="Password" Type="varchar" MaxLength="510" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="Sex" Type="varchar" MaxLength="510" />
+          <Property Name="Access" Type="varchar" MaxLength="510" />
+          <Property Name="OldId" Type="int" />
+          <Property Name="MembershipType" Type="varchar" MaxLength="510" />
+          <Property Name="MembershipId" Type="int" />
+        </EntityType>
+        <EntityType Name="membership">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="lname" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="sex" Type="varchar" MaxLength="50" />
+          <Property Name="dob" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="mid" Type="int" />
+          <Property Name="access" Type="varchar" MaxLength="50" />
+          <Property Name="ex1" Type="int" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="renew" Type="datetime" />
+          <Property Name="email" Type="varchar" MaxLength="80" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="address1" Type="varchar" MaxLength="50" />
+          <Property Name="address2" Type="varchar" MaxLength="50" />
+          <Property Name="town" Type="varchar" MaxLength="50" />
+          <Property Name="postcode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="pic_categories">
+          <Key>
+            <PropertyRef Name="CAT_ID" />
+          </Key>
+          <Property Name="CAT_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CAT_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="CAT_IMAGE" Type="varchar" MaxLength="100" />
+          <Property Name="CAT_DESC" Type="varchar" MaxLength="500" />
+          <Property Name="CAT_GROUP" Type="int" Nullable="false" />
+          <Property Name="CAT_DATED" Type="datetime" />
+        </EntityType>
+        <EntityType Name="pic_groups">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Name="GROUP_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GROUP_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="GROUP_DESC" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="pic_images">
+          <Key>
+            <PropertyRef Name="PIC_ID" />
+          </Key>
+          <Property Name="PIC_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PIC_CAT" Type="int" Nullable="false" />
+          <Property Name="PIC_NAME" Type="varchar" MaxLength="150" />
+          <Property Name="PIC_IMAGE" Type="varchar" MaxLength="50" />
+          <Property Name="PIC_HEIGHT" Type="varchar" MaxLength="10" />
+          <Property Name="PIC_WIDTH" Type="varchar" MaxLength="10" />
+          <Property Name="PIC_VIEW" Type="int" />
+          <Property Name="PIC_DATED" Type="datetime" />
+          <Property Name="PIC_APPROVED" Type="int" />
+          <Property Name="PIC_DESC" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="mid" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="membership" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+          <Property Name="dob" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="subject" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="best" Type="mediumtext" />
+          <Property Name="ambitions" Type="mediumtext" />
+          <Property Name="latest" Type="mediumtext" />
+          <Property Name="tip" Type="mediumtext" />
+          <Property Name="position" Type="mediumtext" />
+          <Property Name="standard" Type="mediumtext" />
+          <Property Name="qualifications" Type="mediumtext" />
+          <Property Name="specialisation" Type="mediumtext" />
+          <Property Name="posts_held" Type="mediumtext" />
+          <Property Name="current_athletes" Type="mediumtext" />
+          <Property Name="athletes_achievements" Type="mediumtext" />
+          <Property Name="age_group" Type="varchar" MaxLength="50" />
+          <Property Name="photo" Type="mediumblob" />
+          <Property Name="pb" Type="int" />
+          <Property Name="result" Type="int" />
+          <Property Name="pb1" Type="varchar" MaxLength="150" />
+          <Property Name="pb2" Type="mediumtext" />
+          <Property Name="weeman" Type="mediumblob" />
+          <Property Name="more" Type="bit" />
+          <Property Name="more2" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="results">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventId" Type="varchar" MaxLength="50" />
+          <Property Name="mid" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="lname" Type="varchar" MaxLength="50" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="day" Type="datetime" />
+          <Property Name="month" Type="datetime" />
+          <Property Name="year" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="gender" Type="varchar" MaxLength="50" />
+          <Property Name="agecat" Type="varchar" MaxLength="50" />
+          <Property Name="subject" Type="varchar" MaxLength="50" />
+          <Property Name="section" Type="varchar" MaxLength="50" />
+          <Property Name="position" Type="int" />
+          <Property Name="result" Type="double" />
+          <Property Name="dp2" Type="double" />
+          <Property Name="d1" Type="int" />
+          <Property Name="d2" Type="int" />
+          <Property Name="d3" Type="int" />
+          <Property Name="d4" Type="int" />
+          <Property Name="d5" Type="int" />
+          <Property Name="comment" Type="varchar" MaxLength="100" />
+          <Property Name="url" Type="mediumtext" />
+          <Property Name="url2" Type="varchar" MaxLength="50" />
+          <Property Name="udate" Type="datetime" />
+          <Property Name="extra1" Type="varchar" MaxLength="100" />
+          <Property Name="extra2" Type="mediumtext" />
+          <Property Name="extra3" Type="int" />
+        </EntityType>
+        <Association Name="FK_CAT_ID">
+          <End Role="pic_categories" Type="dboModel.Store.pic_categories" Multiplicity="1" />
+          <End Role="pic_images" Type="dboModel.Store.pic_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pic_categories">
+              <PropertyRef Name="CAT_ID" />
+            </Principal>
+            <Dependent Role="pic_images">
+              <PropertyRef Name="PIC_CAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_group_id">
+          <End Role="pic_groups" Type="dboModel.Store.pic_groups" Multiplicity="1" />
+          <End Role="pic_categories" Type="dboModel.Store.pic_categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pic_groups">
+              <PropertyRef Name="GROUP_ID" />
+            </Principal>
+            <Dependent Role="pic_categories">
+              <PropertyRef Name="CAT_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dboModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="HACEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Members" EntityType="dboModel.Member" />
+          <EntitySet Name="Events" EntityType="dboModel.Event" />
+          <EntitySet Name="links" EntityType="dboModel.link" />
+          <EntitySet Name="memberships" EntityType="dboModel.membership" />
+          <EntitySet Name="Profiles" EntityType="dboModel.Profile" />
+          <EntitySet Name="results" EntityType="dboModel.result" />
+          <EntitySet Name="pic_categories" EntityType="dboModel.pic_categories" />
+          <EntitySet Name="pic_groups" EntityType="dboModel.pic_groups" />
+          <EntitySet Name="pic_images" EntityType="dboModel.pic_images" />
+          <AssociationSet Name="FK_CAT_ID" Association="dboModel.FK_CAT_ID">
+            <End Role="pic_categories" EntitySet="pic_categories" />
+            <End Role="pic_images" EntitySet="pic_images" />
+          </AssociationSet>
+          <AssociationSet Name="fk_group_id" Association="dboModel.fk_group_id">
+            <End Role="pic_groups" EntitySet="pic_groups" />
+            <End Role="pic_categories" EntitySet="pic_categories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ForeName" Type="String" Nullable="false" />
+          <Property Name="SurName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" />
+          <Property Name="Phone" Type="String" />
+          <Property Name="Password" Type="String" />
+          <Property Name="DOB" Type="DateTime" />
+          <Property Name="Sex" Type="String" />
+          <Property Name="Access" Type="String" />
+          <Property Name="OldId" Type="Int32" />
+          <Property Name="MembershipType" Type="String" />
+          <Property Name="MembershipId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" />
+          <Property Type="String" Name="subject" />
+          <Property Type="Int32" Name="Day" />
+          <Property Type="String" Name="Month" />
+          <Property Type="Int32" Name="Year" />
+          <Property Type="DateTime" Name="Date" />
+          <Property Type="DateTime" Name="EndDate" />
+          <Property Type="String" Name="Location" />
+          <Property Type="String" Name="Description" />
+          <Property Type="String" Name="URL" />
+          <Property Type="String" Name="show_news" />
+          <Property Type="String" Name="news1" />
+          <Property Type="String" Name="news2" />
+          <Property Type="Int32" Name="resultid" />
+          <Property Type="Binary" Name="photo" />
+          <Property Type="String" Name="ImgS" />
+          <Property Type="String" Name="ImgB" />
+          <Property Type="String" Name="name" />
+          <Property Type="String" Name="lname" />
+          <Property Type="Int32" Name="mid" />
+          <Property Type="String" Name="show_results" />
+          <Property Type="DateTime" Name="udate" />
+        </EntityType>
+        <EntityType Name="link">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="category" />
+          <Property Type="String" Name="url" />
+          <Property Type="String" Name="title" />
+          <Property Type="String" Name="description" />
+          <Property Type="Binary" Name="image" />
+          <Property Type="String" Name="mid" />
+          <Property Type="String" Name="name" />
+          <Property Type="String" Name="lname" />
+          <Property Type="DateTime" Name="udate" />
+          <Property Type="Binary" Name="photo" />
+        </EntityType>
+        <EntityType Name="membership">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="lname" />
+          <Property Type="String" Name="name" />
+          <Property Type="String" Name="sex" />
+          <Property Type="String" Name="dob" />
+          <Property Type="String" Name="type" />
+          <Property Type="Int32" Name="mid" />
+          <Property Type="String" Name="access" />
+          <Property Type="Int32" Name="ex1" />
+          <Property Type="DateTime" Name="udate" />
+          <Property Type="DateTime" Name="renew" />
+          <Property Type="String" Name="email" />
+          <Property Type="String" Name="phone" />
+          <Property Type="String" Name="address1" />
+          <Property Type="String" Name="address2" />
+          <Property Type="String" Name="town" />
+          <Property Type="String" Name="postcode" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="mid" />
+          <Property Type="String" Name="type" />
+          <Property Type="String" Name="membership" />
+          <Property Type="String" Name="gender" />
+          <Property Type="String" Name="name" />
+          <Property Type="String" Name="lname" />
+          <Property Type="DateTime" Name="dob" />
+          <Property Type="String" Name="Email" />
+          <Property Type="String" Name="subject" />
+          <Property Type="String" Name="username" />
+          <Property Type="String" Name="password" />
+          <Property Type="DateTime" Name="udate" />
+          <Property Type="String" Name="best" />
+          <Property Type="String" Name="ambitions" />
+          <Property Type="String" Name="latest" />
+          <Property Type="String" Name="tip" />
+          <Property Type="String" Name="position" />
+          <Property Type="String" Name="standard" />
+          <Property Type="String" Name="qualifications" />
+          <Property Type="String" Name="specialisation" />
+          <Property Type="String" Name="posts_held" />
+          <Property Type="String" Name="current_athletes" />
+          <Property Type="String" Name="athletes_achievements" />
+          <Property Type="String" Name="age_group" />
+          <Property Type="Binary" Name="photo" />
+          <Property Type="Int32" Name="pb" />
+          <Property Type="Int32" Name="result" />
+          <Property Type="String" Name="pb1" />
+          <Property Type="String" Name="pb2" />
+          <Property Type="Binary" Name="weeman" />
+          <Property Type="Boolean" Name="more" />
+          <Property Type="String" Name="more2" />
+        </EntityType>
+        <EntityType Name="result">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EventId" />
+          <Property Type="String" Name="mid" />
+          <Property Type="String" Name="name" />
+          <Property Type="String" Name="lname" />
+          <Property Type="DateTime" Name="date" />
+          <Property Type="DateTime" Name="day" />
+          <Property Type="DateTime" Name="month" />
+          <Property Type="Int32" Name="year" />
+          <Property Type="String" Name="Title" />
+          <Property Type="String" Name="Location" />
+          <Property Type="String" Name="gender" />
+          <Property Type="String" Name="agecat" />
+          <Property Type="String" Name="subject" />
+          <Property Type="String" Name="section" />
+          <Property Type="Int32" Name="position" />
+          <Property Type="Double" Name="result1" />
+          <Property Type="Double" Name="dp2" />
+          <Property Type="Int32" Name="d1" />
+          <Property Type="Int32" Name="d2" />
+          <Property Type="Int32" Name="d3" />
+          <Property Type="Int32" Name="d4" />
+          <Property Type="Int32" Name="d5" />
+          <Property Type="String" Name="comment" />
+          <Property Type="String" Name="url" />
+          <Property Type="String" Name="url2" />
+          <Property Type="DateTime" Name="udate" />
+          <Property Type="String" Name="extra1" />
+          <Property Type="String" Name="extra2" />
+          <Property Type="Int32" Name="extra3" />
+        </EntityType>
+        <EntityType Name="pic_categories">
+          <Key>
+            <PropertyRef Name="CAT_ID" />
+          </Key>
+          <Property Type="Int32" Name="CAT_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CAT_NAME" />
+          <Property Type="String" Name="CAT_IMAGE" />
+          <Property Type="String" Name="CAT_DESC" />
+          <Property Type="Int32" Name="CAT_GROUP" Nullable="false" />
+          <NavigationProperty Name="pic_images" Relationship="dboModel.FK_CAT_ID" FromRole="pic_categories" ToRole="pic_images" />
+          <NavigationProperty Name="pic_groups" Relationship="dboModel.fk_group_id" FromRole="pic_categories" ToRole="pic_groups" />
+          <Property Type="DateTime" Name="CAT_DATED" />
+        </EntityType>
+        <EntityType Name="pic_groups">
+          <Key>
+            <PropertyRef Name="GROUP_ID" />
+          </Key>
+          <Property Type="Int32" Name="GROUP_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GROUP_NAME" />
+          <Property Type="String" Name="GROUP_DESC" />
+          <NavigationProperty Name="pic_categories" Relationship="dboModel.fk_group_id" FromRole="pic_groups" ToRole="pic_categories" />
+        </EntityType>
+        <EntityType Name="pic_images">
+          <Key>
+            <PropertyRef Name="PIC_ID" />
+          </Key>
+          <Property Type="Int32" Name="PIC_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PIC_CAT" Nullable="false" />
+          <Property Type="String" Name="PIC_NAME" />
+          <Property Type="String" Name="PIC_IMAGE" />
+          <Property Type="String" Name="PIC_HEIGHT" />
+          <Property Type="String" Name="PIC_WIDTH" />
+          <Property Type="Int32" Name="PIC_VIEW" />
+          <Property Type="DateTime" Name="PIC_DATED" />
+          <Property Type="Int32" Name="PIC_APPROVED" />
+          <Property Type="String" Name="PIC_DESC" />
+          <NavigationProperty Name="pic_categories" Relationship="dboModel.FK_CAT_ID" FromRole="pic_images" ToRole="pic_categories" />
+        </EntityType>
+        <Association Name="FK_CAT_ID">
+          <End Type="dboModel.pic_categories" Role="pic_categories" Multiplicity="1" />
+          <End Type="dboModel.pic_images" Role="pic_images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pic_categories">
+              <PropertyRef Name="CAT_ID" />
+            </Principal>
+            <Dependent Role="pic_images">
+              <PropertyRef Name="PIC_CAT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_group_id">
+          <End Type="dboModel.pic_groups" Role="pic_groups" Multiplicity="1" />
+          <End Type="dboModel.pic_categories" Role="pic_categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pic_groups">
+              <PropertyRef Name="GROUP_ID" />
+            </Principal>
+            <Dependent Role="pic_categories">
+              <PropertyRef Name="CAT_GROUP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dboModelStoreContainer" CdmEntityContainer="HACEntities">
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="dboModel.Member">
+              <MappingFragment StoreEntitySet="member">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ForeName" ColumnName="ForeName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Access" ColumnName="Access" />
+                <ScalarProperty Name="OldId" ColumnName="OldId" />
+                <ScalarProperty Name="MembershipType" ColumnName="MembershipType" />
+                <ScalarProperty Name="MembershipId" ColumnName="MembershipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="dboModel.Event">
+              <MappingFragment StoreEntitySet="events">
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="show_results" ColumnName="show_results" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ImgB" ColumnName="ImgB" />
+                <ScalarProperty Name="ImgS" ColumnName="ImgS" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="resultid" ColumnName="resultid" />
+                <ScalarProperty Name="news2" ColumnName="news2" />
+                <ScalarProperty Name="news1" ColumnName="news1" />
+                <ScalarProperty Name="show_news" ColumnName="show_news" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="links">
+            <EntityTypeMapping TypeName="dboModel.link">
+              <MappingFragment StoreEntitySet="links">
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="memberships">
+            <EntityTypeMapping TypeName="dboModel.membership">
+              <MappingFragment StoreEntitySet="membership">
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="town" ColumnName="town" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="renew" ColumnName="renew" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="ex1" ColumnName="ex1" />
+                <ScalarProperty Name="access" ColumnName="access" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="dboModel.Profile">
+              <MappingFragment StoreEntitySet="profile">
+                <ScalarProperty Name="more2" ColumnName="more2" />
+                <ScalarProperty Name="more" ColumnName="more" />
+                <ScalarProperty Name="weeman" ColumnName="weeman" />
+                <ScalarProperty Name="pb2" ColumnName="pb2" />
+                <ScalarProperty Name="pb1" ColumnName="pb1" />
+                <ScalarProperty Name="result" ColumnName="result" />
+                <ScalarProperty Name="pb" ColumnName="pb" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="age_group" ColumnName="age_group" />
+                <ScalarProperty Name="athletes_achievements" ColumnName="athletes_achievements" />
+                <ScalarProperty Name="current_athletes" ColumnName="current_athletes" />
+                <ScalarProperty Name="posts_held" ColumnName="posts_held" />
+                <ScalarProperty Name="specialisation" ColumnName="specialisation" />
+                <ScalarProperty Name="qualifications" ColumnName="qualifications" />
+                <ScalarProperty Name="standard" ColumnName="standard" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="tip" ColumnName="tip" />
+                <ScalarProperty Name="latest" ColumnName="latest" />
+                <ScalarProperty Name="ambitions" ColumnName="ambitions" />
+                <ScalarProperty Name="best" ColumnName="best" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="membership" ColumnName="membership" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="results">
+            <EntityTypeMapping TypeName="dboModel.result">
+              <MappingFragment StoreEntitySet="results">
+                <ScalarProperty Name="extra3" ColumnName="extra3" />
+                <ScalarProperty Name="extra2" ColumnName="extra2" />
+                <ScalarProperty Name="extra1" ColumnName="extra1" />
+                <ScalarProperty Name="udate" ColumnName="udate" />
+                <ScalarProperty Name="url2" ColumnName="url2" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="d5" ColumnName="d5" />
+                <ScalarProperty Name="d4" ColumnName="d4" />
+                <ScalarProperty Name="d3" ColumnName="d3" />
+                <ScalarProperty Name="d2" ColumnName="d2" />
+                <ScalarProperty Name="d1" ColumnName="d1" />
+                <ScalarProperty Name="dp2" ColumnName="dp2" />
+                <ScalarProperty Name="result1" ColumnName="result" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="section" ColumnName="section" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="agecat" ColumnName="agecat" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pic_categories">
+            <EntityTypeMapping TypeName="dboModel.pic_categories">
+              <MappingFragment StoreEntitySet="pic_categories">
+                <ScalarProperty Name="CAT_DATED" ColumnName="CAT_DATED" />
+                <ScalarProperty Name="CAT_GROUP" ColumnName="CAT_GROUP" />
+                <ScalarProperty Name="CAT_DESC" ColumnName="CAT_DESC" />
+                <ScalarProperty Name="CAT_IMAGE" ColumnName="CAT_IMAGE" />
+                <ScalarProperty Name="CAT_NAME" ColumnName="CAT_NAME" />
+                <ScalarProperty Name="CAT_ID" ColumnName="CAT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pic_groups">
+            <EntityTypeMapping TypeName="dboModel.pic_groups">
+              <MappingFragment StoreEntitySet="pic_groups">
+                <ScalarProperty Name="GROUP_DESC" ColumnName="GROUP_DESC" />
+                <ScalarProperty Name="GROUP_NAME" ColumnName="GROUP_NAME" />
+                <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pic_images">
+            <EntityTypeMapping TypeName="dboModel.pic_images">
+              <MappingFragment StoreEntitySet="pic_images">
+                <ScalarProperty Name="PIC_DESC" ColumnName="PIC_DESC" />
+                <ScalarProperty Name="PIC_APPROVED" ColumnName="PIC_APPROVED" />
+                <ScalarProperty Name="PIC_DATED" ColumnName="PIC_DATED" />
+                <ScalarProperty Name="PIC_VIEW" ColumnName="PIC_VIEW" />
+                <ScalarProperty Name="PIC_WIDTH" ColumnName="PIC_WIDTH" />
+                <ScalarProperty Name="PIC_HEIGHT" ColumnName="PIC_HEIGHT" />
+                <ScalarProperty Name="PIC_IMAGE" ColumnName="PIC_IMAGE" />
+                <ScalarProperty Name="PIC_NAME" ColumnName="PIC_NAME" />
+                <ScalarProperty Name="PIC_CAT" ColumnName="PIC_CAT" />
+                <ScalarProperty Name="PIC_ID" ColumnName="PIC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

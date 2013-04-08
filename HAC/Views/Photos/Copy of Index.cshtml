@@ -1,0 +1,277 @@
+﻿@{
+    ViewBag.Title = "";
+}
+
+    <div id="leftColumn">
+        <div id="folderList">
+             @{Html.RenderPartial("FolderTree", ViewBag.Folders as List<PGFolder>);}
+        </div>
+
+        <div id="slider"></div>    
+        <div id="thumbnailContainer">        
+              <ul id="thumbnails" data-bind='template: {name:"thumbnailsTemplate", foreach: thumbnails}'></ul> 
+         </div>
+    </div>
+
+
+    <div id="mainColumn">
+        <div id="htmlContent">@Html.Raw(ViewBag.HtmlContent)</div>
+
+        <div id="mainImageArea">
+            <a href="#" id="arrowleft">
+                <img src="@Url.Content("~/Content/images/left-arrow.png")" alt="previous picture" />
+            </a>
+
+            <div id="mainImageContainer">
+                    <div id="mainImageHeader">
+                        <span data-bind="text: friendlyname"></span>                   
+                        @if (Roles.IsUserInRole("Admin")){
+                            <text><a href="#" id="btoEditImageInfo">Edit image info</a></text>
+                        }    
+                    </div>
+                       
+                  <img data-bind="attr: { src : mainimageurl }" />
+                  
+
+                  <div class="mainImageBottom">
+                    <p><span data-bind="text: imagedescr"></span></p>      
+                    <a class="exif_btn" href="#" data-bind="visible: hasExifInfo" id="openExifData">EXIF information</a>
+                    <a class="share_btn" href="#">Share this image</a>  
+                  </div>
+
+                   <div class="share_content">
+                    <input readonly class="share_textbox span10" data-bind="attr: { value : imagepubliclink }" type="text"/>  
+                    <a class="close_share" href="#">X</a>            
+                   </div>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                    <p align="left"><a class="btn" href="#" id="btonewcomment">Add a comment</a></p>
+                    }
+                    else { 
+                    <small>In order to post comments you need to @Html.ActionLink("login first", "Login", "User") </small>
+                    }
+            </div>
+
+            <a href="#" id="arrowright">
+                <img src="@Url.Content("~/Content/images/right-arrow.png")" alt="next picture" />
+             </a>
+
+
+           @*  <!-- EXIF Info-->
+            <ul id="exif" data-bind="visible: hasExifInfo, template: {name:'exifTemplateSmall', foreach: exif}"></ul> 
+            <!-- end exif info-->*@
+
+
+        
+
+
+            <!-- Comments -->
+            <div class="comments" data-bind="template: {name:'commentsTemplate', foreach: comments, afterAdd: function(elem) { animateNew($(elem))}}"></div>           
+            <!-- end comments -->
+        </div>
+
+        <div id="searchResults">    
+            <div data-bind="template: {name:'searchResultsTemplate', foreach: searchResult}"></div>                                    
+            <script id='searchResultsTemplate' type="text/x-jquery-tmpl"> 
+                <div class="searchResult">
+                <p><strong>${Name}</strong> ${VPath}</p>
+                
+                {{each Images}}
+                    <a folder="${FolderVPath}" picture="${VPath}" class="linkSearchResult" href="#">
+                        <img alt="${FriendlyName}" class="commentthumbnail" src="${ImageThumbnailFullUrl}" alt="Author's avatar"/>                                                        
+                        <span class="name">
+                        ${FriendlyName}
+                        </span>
+                        <span class="description">
+                        ${ImageDescr}    
+                        </span>                                                
+                    </a>
+                {{/each}}
+
+                </div>
+            </script>        
+        </div>
+
+        <div id="latestCommentsArea">            
+            <div class="comments" data-bind="template: {name:'latestcommentsTemplate', foreach: latestcomments}"></div>            
+            <script id='latestcommentsTemplate' type="text/x-jquery-tmpl">    
+                <div class="comment latest"> 
+                    {{if CanDeleteComment}}
+                            <input class="btoShowMessageDialog btn danger" type="submit" value="[X] Delete comment" style="display: none; ">                                                                
+                            <div class="messageAction" style="display: none;">
+			                    Delete comment?
+                                    <div class="alert-message error">
+				                        <input type="button" class="btn delete" type="latestComments" id="${ID}" value="Yes, I'm sure, delete comment">
+				                        <input type="button" class="btn cancel" value="Cancel">
+                                    </div>
+		                    </div>	
+                    {{/if}}
+
+                    <div class="comment-img">
+                        <a href="${MainPageVirtualUrl}">
+                        <img class="commentthumbnail" src="${ImageThumbnailFullUrl}" alt="Author's avatar"/>
+                        <img class="avatar" src="http://www.gravatar.com/avatar/${GravatarHash}?s=40" alt="Author's avatar"/>
+                        </a>
+                    </div>
+                    <div class="comment-main">
+                        <div class="comment-headers">
+                            <strong>${Author}</strong>  <span class="date">${FriendlyTimeStamp}</span>
+                        </div>
+            
+                        <p>${Body}</p> 
+                    </div> 
+                </div>
+            </script>        
+        </div>
+    </div>
+  
+  
+@*Templates *@
+<script id='thumbnailsTemplate' type="text/x-jquery-tmpl">     
+    <li>
+        <a href="${Url}" rel="${VPath}">
+        <img src="${UrlThumbnail}"/>
+        </a>
+    </li>
+</script>
+
+
+@*<script id="exifTemplateSmall" type="text/x-jquery-tmpl">
+        <li>Make: ${Make}</li>
+        <li>Aperture: ${Aperture}</li>
+        <li>Flash : ${Flash}</li>
+</script>   *@         
+
+
+<script id='commentsTemplate' type="text/x-jquery-tmpl">    
+    <div class="comment"> 
+        {{if CanDeleteComment}}
+            <input class="btoShowMessageDialog btn danger" type="submit" value="[X] Delete comment" style="display: none;">                                                                
+            <div class="messageAction" style="display: none;">
+                <div class="alert-message error">
+				    <input type="button" class="delete btn" id="${ID}" value="Yes, I'm sure, delete comment">
+				    <input type="button" class="cancel btn" value="Cancel">
+                </div>
+		    </div>	
+        {{/if}}
+
+        <div class="comment-img">
+            <img class="avatar" src="http://www.gravatar.com/avatar/${GravatarHash}?s=40" alt="Author's avatar"/>
+        </div>
+        <div class="comment-main">
+            <div class="comment-headers">
+                <strong>${Author}</strong>  <span class="date">${FriendlyTimeStamp}</span>
+            </div>
+            
+            <p>${Body}</p> 
+        </div> 
+    </div>
+</script>
+  
+
+@*Modal windows*@
+
+@*exif modal window*@
+<div id="modalExifData" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Exif info</h3>
+    </div>
+    <div class="modal-body">
+        <div id="msgError"></div>
+                    
+       
+        <img data-bind="attr: { src : mainimageurl }" />
+        
+        <ul id="exif" data-bind="template: {name:'exifTemplate', foreach: exif}"></ul>         
+        <script id='exifTemplate' type="text/x-jquery-tmpl">     
+            <li><strong>Make:</strong> ${Make}</li>
+            <li><strong>Aperture:</strong> ${Aperture}</li>
+            <li><strong>Flash:</strong> ${Flash}</li>
+            <li><strong>White Balance:</strong> ${WhiteBalance}</li>
+            <li><strong>Exposure:</strong> ${Exposure}</li>
+            <li><strong>ISO:</strong> ${ISO}</li>
+            <li><strong>Exposure Bias Value:</strong> ${ExposureBiasValue}</li>
+            <li><strong>Subject Distance:</strong> ${SubjectDistance}</li>
+            <li><strong>Focal Length:</strong> ${FocalLength}</li>
+        </script>
+                    
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="Close window" class="btn closemodal" />
+    </div>
+</div>
+
+
+@*new comment modal window*@
+@if (Request.IsAuthenticated)
+{
+<text>
+<div id="modalNewComment" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Add a comment on this picture</h3>
+    </div>
+    <div class="modal-body">
+        <div id="msgError"></div>                    
+     @*   @{Html.RenderPartial("AddComment");}*@
+                    
+    </div>
+    <div class="modal-footer">
+             
+    </div>
+</div>
+</text>
+}
+
+@*modal image info edition*@                
+@if (Roles.IsUserInRole("Admin"))
+{
+<div id="modalEditImageInfo" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close">&times;</a>
+        <h3>Edit image details (as administrator)</h3>
+    </div>
+    <div class="modal-body">
+        <div id="msgError"></div>
+          @*  @{Html.RenderPartial("EditImageInfo");}*@
+    </div>
+    <div class="modal-footer">
+             
+    </div>
+</div>
+}
+
+<script>
+
+    $(document).ready(function () {         
+
+        $('#folderList ul ul').hide(); //initial load collapse all.
+
+        @if (string.IsNullOrWhiteSpace(ViewBag.HtmlContent)){
+            if (ViewBag.SelectedFolder!=null) {
+                <text>
+                OpenFolder('@ViewBag.SelectedFolder',null);
+                </text>        
+
+                if (@ViewBag.SelectedImage!=null){
+                    <text>                
+                    //folderListClick($(linkFolder), true, false, '@ViewBag.SelectedImage');                        
+                    LoadImage('@ViewBag.SelectedImage');
+                    </text>        
+                }
+                else{
+                    <text>
+                   // folderListClick($(linkFolder), true, true);                        
+                    </text>
+                }            
+            }
+            else{
+                <text>            
+                $('#folderList a:first').trigger('click'); //first selected by default
+                </text>
+            }    
+        }
+    });
+</script>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PGFolder>
+
+<ul> 
+ @foreach (var subfolder in (ViewData.Model))
+ {
+    var showfolder = true;
+    var showSubfolders = true;
+     
+    string className = "folder"; //default style
+    if (subfolder.Security.PrivateFolder)
+    {
+        if (subfolder.IsUserGranted(User.Identity.Name))
+        {
+            className = "private";
+        }
+        else
+        {
+            if (Configuration.GetConfiguration().HidePrivateFolders) {
+                showfolder = false;
+            }
+            else{
+                showSubfolders = false;
+                className = "denied";
+            }            
+        }
+    }
+    else
+    {
+        if (subfolder.SubFolders.Count == 0)
+        {
+            className = "subfolder";
+        }
+    }
+
+    if (showfolder)
+    {
+    <li class="@className">
+    <a rel="@subfolder.VPath" href="@Url.Action("List", "Folder", new { folder = HttpUtility.UrlEncode(subfolder.VPath) })">@subfolder.Name <span class="items">(@subfolder.FolderInfo)</span></a>                
+    @if (showSubfolders && subfolder.SubFolders.Count > 0)
+    {             
+        <text>
+        @{Html.RenderPartial("FolderTree", subfolder.SubFolders);}   
+        </text>                                                        
+    }
+    </li>    
+    }
+ }
+</ul>

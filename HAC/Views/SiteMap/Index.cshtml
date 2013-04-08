@@ -1,0 +1,22 @@
+﻿@model IEnumerable<PGFolder>
+<?xml version="1.0" encoding="UTF-8"?>
+ <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+@foreach (var item in Model)
+{
+    if (item.NumberImages>0 && !item.IsPrivateFolder())
+    {
+    <url>
+    <loc>@item.FolderFullUrl</loc>     
+    @foreach (var image in item.Images)
+    {            
+        <image:image>
+            <image:loc>@image.ImageFullUrl</image:loc>
+            <image:title>@image.FriendlyName</image:title>
+            <image:caption>@image.ImageDescr</image:caption>
+        </image:image>
+    }       
+    </url> 
+    }
+}
+
+</urlset> 

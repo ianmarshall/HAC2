@@ -1,0 +1,91 @@
+﻿@using HAC.Domain
+@using HAC.Models
+@model HomeModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hunts AC - @ViewBag.Title</title>
+
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/layout.css")" rel="stylesheet" type="text/css" />
+    
+
+    
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+   
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    
+  @*  <link href="@Url.Content("~/Content/themes/jquery-ui-1.9.2.custom/css/custom-theme/jquery-ui-1.9.2.custom.css")" rel="stylesheet">
+	<script src="@Url.Content("~/Content/themes/jquery-ui-1.9.2.custom/js/jquery-1.8.3.js")"></script>
+	<script src="@Url.Content("~/Content/themes/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js")"></script>
+   *@
+    <script>
+       
+​
+</script>
+    
+</head>
+
+    <body>
+        <div id="main">
+            <div id="main-width">
+                <!-- header -->
+                <div id="header">
+                    <div class="inside">
+                        <!-- header-box begin -->
+                        <div class="header-box">
+                            <div class="left">
+                                <div class="right">
+                                    <div class="inner">
+                                        <div class="row-1">
+                                            <div class="fleft">
+                                                <!-- logo-box begin -->
+                                                <div class="logo-box">
+                                                    <div class="left">
+                                                        <div class="right">
+                                                            <h1>@Html.ActionLink("Huntingdonshire Athletics Club", "Index", "Home")</h1>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- logo-box end -->
+                                                <span class="slogan">He conquers who endures</span>
+                                            </div>
+                                           
+                                            <div class="fright">
+                                                <form action="" id="search-form">
+                                                    <div>
+                                                        <input type="text" value="" class="text" /><input type="submit" value="Search" class="submit" />
+                                                    </div>
+                                                </form>
+                                               
+                                            </div>
+                                            <!-- sign in pv -->
+                                            @{
+                                                Html.RenderPartial("SignIn");
+                                            }
+                                        
+                                        </div>
+                                        <div class="row-2">
+                                            <!-- main menu/nav bar-->
+                                            @Html.MvcSiteMap().Menu(false, true, true)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- header-box end -->
+                    </div>
+                </div>
+                @RenderBody()
+
+                <!-- footer -->
+                <div id="footer">
+                    <p>Designed by Ian Marshall &copy; 2012 &nbsp; | &nbsp; @Html.ActionLink("Site Map", "SiteMap", "Home")</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+

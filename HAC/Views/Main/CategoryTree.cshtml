@@ -1,0 +1,15 @@
+﻿@using System.Collections
+@using HAC.Domain
+@model List<pic_categories>
+
+<ul> 
+ @foreach (var cat in (ViewData.Model))
+ {
+   
+    <li class="subfolder">
+    <a rel="" href="@Url.Action("List", "Folder", new { folder = HttpUtility.UrlEncode(@cat.CAT_NAME) })">@cat.CAT_NAME <span class="items">(@cat.pic_images.Count)</span></a>                
+    
+    </li>    
+    }
+ }
+</ul>
