@@ -15,6 +15,7 @@ namespace HAC.Services
 
             FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
             HttpContext.Current.Session["UserName"] = userName;
+           
         }
 
         public void SignOut()

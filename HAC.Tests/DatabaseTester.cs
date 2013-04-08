@@ -1,110 +1,69 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using HAC.Domain.Repositories;
-//using NHibernate.Cfg;
-//using NUnit.Framework;
-//using NHibernate;
-//using HAC.Domain;
-//using NHibernate.Tool.hbm2ddl;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Text;
+using HAC.Domain.Repositories;
+using NHibernate.Cfg;
+using NUnit.Framework;
+using NHibernate;
+using HAC.Domain;
+using NHibernate.Tool.hbm2ddl;
+using System.Data.Entity;
 
-//namespace HAC.Tests
-//{
-//    [TestFixture]
-//    public class DatabaseTester
-//    {
-//        private ISessionFactory sessionFactory;
+namespace HAC.Tests
+{
+    [TestFixture]
+    public class DatabaseTester
+    {
+        private MemberRepository memberRepository;
 
-//        [TestFixtureSetUp]
-//        public void setUp()
-//        {
-//            DataConfig.EnsureStartup();
+        [TestFixtureSetUp]
+        public void setUp()
+        {
+         
+            memberRepository = new MemberRepository();
+        
 
-//        }
 
-//        //[Test, Explicit]
-//        //public void CreateDatabaseSchema()
-//        //{
-//        //    //var export = new SchemaExport(DataConfig.BuildConfiguration());
-//        //    ////export.Execute(true, true, false);
-//        //    //var configuration = new Configuration().Configure();
-//        //    //sessionFactory = configuration.BuildSessionFactory();
-//        //    //var scm = new SchemaExport(configuration);
-//        //    //scm.Create(false, true);
-//        //}
+        }
 
-//        //[Test, Explicit]
-//        //public void UpdateDatabaseSchema()
-//        //{
-//        //    var configuration = new Configuration().Configure();
-//        //    var v = new SchemaUpdate(configuration);
-//        //    v.Execute(true, true);
-//        }
 
-//        //[Test, Explicit]
-//        //public void OutputDatabaseScript()
-//        //{
+        //[Test]
+        //public void TestGetMembers()
+        //{
+        //    var mr = new MemberRepository();
 
-//        //    //var configuration = new Configuration().Configure();
-//        //    //var seessionFactory = configuration.BuildSessionFactory();
-//        //    //var scm = new SchemaExport(configuration);
-//        //    //scm.SetOutputFile(@"hacdb.sql").Execute(false, false, false);
-//        //}
-
-//        [Test, Ignore]
-//        public void TestGetMembers()
-//        {
-//            var mr = new MemberRepository();
-
-//            var member = mr.GetMember("ian@com");
-//            Assert.NotNull(member);
-//        }
+        //    var member = mr.GetMember("ian@com");
+        //    Assert.NotNull(member);
+        //}
 
 
 
-//        [Test]
-//        public void When_saving_should_write_to_database()
-//        {
-//            var member = new Member
-//                {
-//                    Email = "ian@com",
-//                    ForeName = "Ian",
-//                    SurName = "Marshall",
-//                    Password = "time124",
-//                    DOB = new DateTime(1753,1,1),
-                    
-//                    Profile = new Profile
-//                        {
-//                            Name = "TEST"
-//                        }
+        [Test]
+        public void When_saving_should_write_to_database()
+        {
+            var member = new Member
+                {
+                    Email = "ian@com",
+                    ForeName = "Ian",
+                    SurName = "Marshall",
+                    Password = "time124",
+                    DOB = new DateTime(1753, 1, 1),
+                };
 
-//                };
+            memberRepository.Save(member);
 
+            HACEntities context = new HACEntities();
 
-//            using (ISession session = DataConfig.GetSession())
-//            {
-//                session.BeginTransaction();
-//                session.SaveOrUpdate(member);
+            Member loadedMember = context.Members.FirstOrDefault(m => m.Id == member.Id);
 
-//                session.Transaction.Commit();
-//            }
-
-//            Member loadedMember;
-
-//            using (ISession session = DataConfig.GetSession())
-//            {
-
-//                loadedMember = session.Get<Member>(member.Id);
-              
-
-//            }
-//            Assert.That(loadedMember, Is.Not.Null);
-//            Assert.That(loadedMember.Email,
-//                       Is.EqualTo("ian@com"));
-//        }
-//    }
+            Assert.That(loadedMember, Is.Not.Null);
+            Assert.That(loadedMember.Email,
+                       Is.EqualTo("ian@com"));
+        }
+    }
 
 
 
-//}
+}

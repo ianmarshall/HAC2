@@ -14,7 +14,16 @@
     <mvcSiteMapNode title="EVENTS" controller="Events" action="Index"/>
     <mvcSiteMapNode title="JUNIORS" controller="Juniors" action="Index"/>
     <mvcSiteMapNode title="TRACK &amp; FIELD" controller="TrackAndField" action="Index"/>
-    <mvcSiteMapNode title="ROAD RUNNERS" controller="RoadRunners" action="Index"/>
+    <mvcSiteMapNode title="ROAD RUNNERS" controller="RoadRunners" action="Index">
+      <mvcSiteMapNode title="TRAINING" controller="RoadRunners" action="Index"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="PHOTOS" controller="PHOTOS" action="Index">
+      <mvcSiteMapNode title="Categories" controller="PHOTOS" action="Index"/>
+        <mvcSiteMapNode title="Category" controller="Category" action="List" visibility="false"/>
+      
+      <mvcSiteMapNode title="Add Photos" controller="PHOTOS" action="Add"/>
+    </mvcSiteMapNode>
+    
     <mvcSiteMapNode title="RECORDS &amp; PBs" controller="Records" action="Index"/>
 
     <mvcSiteMapNode title="ST IVES 10K" controller="StIves10k" action="Index">
@@ -23,6 +32,12 @@
       <mvcSiteMapNode title="Results" controller="StIves10k" action="Info"/>
     </mvcSiteMapNode>
 
+    <mvcSiteMapNode title="My Account" controller="Account" action="Index">
+      <mvcSiteMapNode title="MEMBERS" controller="Account" action="Index"/>
+      <mvcSiteMapNode title="MY Profile" controller="Account" action="Index"/>
+      <mvcSiteMapNode title="Add News-Results" controller="Account" action="Index"/>
+      <mvcSiteMapNode title="Add Photos" controller="Account" action="Index"/>
+    </mvcSiteMapNode>
     <!--<mvcSiteMapNode title="Login" controller="Home" action="Login"/>-->
 
 

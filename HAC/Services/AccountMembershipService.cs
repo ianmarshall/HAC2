@@ -13,6 +13,7 @@ namespace HAC.Services
         public AccountMembershipService()
             : this(null)
         {
+
         }
 
         public AccountMembershipService(MembershipProvider provider)

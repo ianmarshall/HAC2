@@ -1,8 +1,64 @@
-﻿
+﻿@using System.Web.Mvc.Html
+@using HAC.Domain
 @using HAC.Models
 @{
     ViewBag.Title = "";
 }
+<script>
+    jQuery.noConflict();
+    (function ($) {
+        window.onload = function () {
+            $("#tS2").thumbnailScroller({
+                scrollerType: "clickButtons",
+                scrollerOrientation: "horizontal",
+                scrollEasing: "",
+                scrollEasingAmount: 0,
+                acceleration: 4,
+                scrollSpeed: 800,
+                noScrollCenterSpace: 10,
+                autoScrolling: 0,
+                autoScrollingSpeed: 2000,
+                autoScrollingEasing: "easeInOutQuad",
+                autoScrollingDelay: 500
+            });
+        }
+    })(jQuery);
+
+
+    $(document).ready(function () {
+        var cur_stus;
+        $("#accordion").accordion({
+            heightStyle: "content"
+        });
+        //close all on default
+        $('#accordion dd').hide();
+        $('#accordion dt').attr('stus', '');
+
+        //open default data
+        $('#accordion dd:eq(0)').slideDown();
+        $('#accordion dt:eq(0)').attr('stus', 'active');
+
+        $('#accordion dt').click(function () {
+            cur_stus = $(this).attr('stus');
+            if (cur_stus != "active") {
+                //reset everthing - content and attribute
+                $('#accordion dd').slideUp();
+                $('#accordion dt').attr('stus', '');
+
+                //then open the clicked data
+                $(this).next().slideDown();
+                $(this).attr('stus', 'active');
+            }
+                //Remove else part if do not want to close the current opened data
+            else {
+                $(this).next().slideUp();
+                $(this).attr('stus', '');
+            }
+            return false;
+        });
+    });
+
+</script>
 <div id="page1">
 
 
@@ -20,25 +76,45 @@
                                             <div class="left-bot-corner">
                                                 <div class="inner">
                                                     <div class="wrapper">
-
+                                                        <img class="fleft" src="@Url.Content("~/Content/demo-images/subs.jpg")"/>
 
                                                         <div class="extra-wrap">
-                                                            <h4>Today's news</h4>
-                                                            <dl class="news">
+                                                            <h4>Club Announcements</h4>
+
+                                                            <dl class="news" id="accordion">
 
 
 
-                                                                <dd><a href="#">Liverpool wins again  lorem ipsum dolor sit, consectetuer.
-                                                                        <img alt="" src="../Home/images/marker.gif" /></a></dd>
-                                                                <dt>La Liga</dt>
-                                                                <dd><a href="#">Real wrings the victory  adipiscing elit. Praesent vestibulum.
-                                                                        <img alt="" src="../Home/images/marker.gif" /></a></dd>
+                                                                <dt>MMM<a href="#">Annual Subscirptions Due </a></dt>
+                                                                <dd>Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    
+                                                                    
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    
+                                                                    
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    
+                                                                    
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    
+                                                                    
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
+                                                                    <a href="#">
+                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a>
+                                                                </dd>
+                                                                <dt>St Ives 10k - 21st July 2013</dt>
+                                                                <dd><a href="#">Help required
+                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
                                                                 <dt>Serie A</dt>
                                                                 <dd><a href="#">Impossible to stop Inter praesent vestibulum molestie lacus.
-                                                                        <img alt="" src="../Home/images/marker.gif" /></a></dd>
+                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
                                                                 <dt>Serie A</dt>
                                                                 <dd class="last"><a href="#">Milan is saving the intrigue.
-                                                                                     <img alt="" src="../Home/images/marker.gif" /></a></dd>
+                                                                                     <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
                                                             </dl>
                                                         </div>
 
@@ -55,7 +131,7 @@
                 </div>
                 <div class="col-2">
                     <a href="#">
-                        <img alt="" src="images/banner1.jpg" /></a>
+                        <img alt="" src="@Url.Content("~/Content/demo-images/alex_track.png")" /></a>
                 </div>
             </div>
             <div class="row-2 wrapper">
@@ -66,7 +142,7 @@
                             <div class="title-box">
                                 <div class="left">
                                     <div class="right">
-                                        Photogallery
+                                        Photogallery 
                                     </div>
                                 </div>
                             </div>
@@ -74,45 +150,24 @@
                             <div class="fright"><a href="#" class="link2">View all photos</a></div>
                         </div>
                         <!-- slide-box begin -->
-                        <div class="slide-box">
-                            <div class="left">
-                                <div class="right">
-                                    <div class="inner">
-                                        <div class="wrapper">
-                                            <img alt="" src="images/prev.gif" class="prev fleft" /><img alt="" src="images/next.gif" class="next fright" />
-                                        </div>
-                                        <div class="anyClass">
-                                            <ul>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide1.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide2.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide3.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide4.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide5.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide6.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide1.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide2.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide3.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide4.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide5.jpg" /></a></li>
-                                                <li><a href="#">
-                                                    <img alt="" src="images/slide6.jpg" /></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
+
+                        <div id="tS2" class="jThumbnailScroller">
+                            <div class="jTscrollerContainer">
+                                @* <div class="jTscroller" data-bind="template: {name:'thumbnailsTemplate', foreach: thumbnails, afterRender: applyThumbnailScroller } "></div>*@
+                                <div class="jTscroller">
+                                    @foreach (pic_images image in Model.latestPhotos)
+                                    {
+                                        <a href="Image?id=@image.PIC_ID">
+                                            <img src="ThumbnailView/120/120?ImageVPath=@image.PIC_IMAGE"/></a>
+                                    }
                                 </div>
                             </div>
+                            <a href="#" class="jTscrollerPrevButton"></a>
+                            <a href="#" class="jTscrollerNextButton"></a>
                         </div>
+
+
                         <!-- slide-box end -->
                         <div class="line-hor"></div>
                         <div class="wrapper">
@@ -126,7 +181,7 @@
                                                     <div class="left-bot-corner">
                                                         <div class="inner">
                                                             <div class="wrapper">
-                                                                <a href="#" class="link3 fright">Archive</a><h3>Top events of the month</h3>
+                                                                <a href="#" class="link3 fright">Archive</a><h3>Top news items</h3>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -136,91 +191,41 @@
                                     </div>
                                     <!-- title-box1 end -->
                                     <!-- box1 begin -->
-                                    <div class="box1">
+                                    <div class="box2">
                                         <div class="right-bot-corner">
                                             <div class="left-bot-corner">
                                                 <div class="inner">
-                                                    <!-- events block begin -->
-                                                    <div class="box2">
-                                                        <div class="left-top-corner">
-                                                            <div class="right-top-corner">
-                                                                <div class="border-top"></div>
+
+                                                    @foreach (Event news in Model.latestNews)
+                                                    {
+                                                        <!-- events block begin -->
+                                                        <div class="box3">
+                                                            <div class="left-top-corner">
+                                                                <div class="right-top-corner">
+                                                                    <div class="border-top"></div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="border-left">
-                                                            <div class="border-right">
-                                                                <div class="inner">
-                                                                    <div class="extra-wrap">
-                                                                        <img class="img-indent" alt="" src="images/1page-img1.jpg" />
-                                                                        <h6>27 July 2009</h6>
-                                                                        Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.
-                                                                        <div class="wrapper"><a href="#" class="link1"><em><b>more info</b></em></a></div>
+                                                            <div class="border-left">
+                                                                <div class="border-right">
+                                                                    <div class="inner">
+                                                                        <div class="extra-wrap">
+                                                                            <img class="img-indent" alt="" src="@Url.Content("~/Content/images/run_icon.jpg")" />
+                                                                            <h6>@news.Title  @news.Date</h6>
+                                                                            @MvcHtmlString.Create(news.news1.Substring(0, 200)) ....
+                                                                            <div class="wrapper"><a href="#" class="link1"><em><b>more info</b></em></a></div>
+                                                                        </div>
+                                                                        <div class="clear"></div>
                                                                     </div>
-                                                                    <div class="clear"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="left-bot-corner">
+                                                                <div class="right-bot-corner">
+                                                                    <div class="border-bot"></div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="left-bot-corner">
-                                                            <div class="right-bot-corner">
-                                                                <div class="border-bot"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- events block end -->
-                                                    <!-- events block begin -->
-                                                    <div class="box2">
-                                                        <div class="left-top-corner">
-                                                            <div class="right-top-corner">
-                                                                <div class="border-top"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="border-left">
-                                                            <div class="border-right">
-                                                                <div class="inner">
-                                                                    <img class="img-indent" alt="" src="images/1page-img2.jpg" />
-                                                                    <div class="extra-wrap">
-                                                                        <h6>16 July 2009</h6>
-                                                                        Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis.
-                                                                        <div class="wrapper"><a href="#" class="link1"><em><b>more info</b></em></a></div>
-                                                                    </div>
-                                                                    <div class="clear"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="left-bot-corner">
-                                                            <div class="right-bot-corner">
-                                                                <div class="border-bot"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- events block end -->
-                                                    <!-- events block begin -->
-                                                    <div class="box2">
-                                                        <div class="left-top-corner">
-                                                            <div class="right-top-corner">
-                                                                <div class="border-top"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="border-left">
-                                                            <div class="border-right">
-                                                                <div class="inner">
-                                                                    <div class="extra-wrap">
-                                                                        <img class="img-indent" alt="" src="images/1page-img3.jpg" />
-                                                                        <h6>8 July 2009</h6>
-                                                                        Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-                                                                        <div class="wrapper"><a href="#" class="link1"><em><b>more info</b></em></a></div>
-                                                                    </div>
-                                                                    <div class="clear"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="left-bot-corner">
-                                                            <div class="right-bot-corner">
-                                                                <div class="border-bot"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- events block end -->
+                                                        <!-- events block end -->
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -253,11 +258,17 @@
                                             <div class="inner">
                                                 <h6 class="alignright">29 July 2009</h6>
                                                 <p class="aligncenter">
-                                                    <img alt="" src="images/1page-img4.jpg" />
+                                                    <a href="Category/List/38">
+                                                    <img src="@Url.Content("~/Content/images/SeniorTeam.jpg")" />
+                                                        </a>
                                                 </p>
                                                 <div class="inner">
-                                                    <h5>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta.</h5>
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio.
+                                                    <h5>Frostbite League Champions!!</h5>
+                                                    As can be seen from the headline above, our Senior Team has won the Frostbite League for the fiest time ever. And it did so in style, winning the race on the day and fielding its biggest ever team of 46. An amazing effort by all our runners today and throughout the whole series. 
+In addition, we must recognise the fantastic performance by our young Junior team, which also fielded an incredible 46 runners, finishing second on the day and securing second in the league. 
+Both teams were backed by many supporters around the course which helped spur our runners on to the finish line
+                                                </br>
+Congratulations to everyone!
                                                 </div>
                                             </div>
                                         </div>
@@ -273,23 +284,23 @@
                         <div class="indent2">
                             <!--latest events pv-->
 
-                           @* @{
-                                Html.RenderPartial("LatestEvents", Model.latestEvents);
+                            @{
+                                RenderPartialExtensions.RenderPartial(Html, "LatestEvents", Model.latestEvents);
                             }
-                            ;*@
+                            ;
 
                             <!-- title-box3 begin -->
                             <div class="title-box3">
                                 <div class="left">
                                     <div class="right">
                                         <div class="wrapper">
-                                            <a href="#" class="link5 fright">Total</a><h2>Premier League</h2>
+                                            <a href="#" class="link5 fright">Search more</a><h2>Results</h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- title-box3 end -->
-                             
+
                             <!-- box3 begin -->
                             <div class="box3 alt">
                                 <div class="right-bot-corner">
@@ -298,49 +309,57 @@
                                             <table class="league-table">
                                                 <thead>
                                                     <tr>
-                                                        <td class="cell-1"></td>
-                                                        <td class="cell-2"></td>
-                                                        <td class="cell-3">G</td>
-                                                        <td class="cell-4">Pt</td>
+
+                                                        <td></td>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td class="cell-1">1</td>
-                                                        <td class="cell-2"><a href="#">Man Utd</a></td>
-                                                        <td class="cell-3">29</td>
-                                                        <td class="cell-4">65</td>
+                                                        <td><a href="#">Saucony Cambridge Half Marathon</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="cell-1">2</td>
-                                                        <td class="cell-2"><a href="#">Liverpool</a></td>
-                                                        <td class="cell-3">30</td>
-                                                        <td class="cell-4">64</td>
+                                                        <td><a href="#">Cambridge 5k Parkrun</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="cell-1">3</td>
-                                                        <td class="cell-2"><a href="#">Chelsea</a></td>
-                                                        <td class="cell-3">30</td>
-                                                        <td class="cell-4">61</td>
+                                                        <td><a href="#">Wimpole Estate 5k Parkrun</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="cell-1">4</td>
-                                                        <td class="cell-2"><a href="#">Arsenal</a></td>
-                                                        <td class="cell-3">30</td>
-                                                        <td class="cell-4">55</td>
+                                                        <td><a href="#">Wimpole Estate 5k Parkrun</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="cell-1">5</td>
-                                                        <td class="cell-2"><a href="#">Aston Villa</a></td>
-                                                        <td class="cell-3">30</td>
-                                                        <td class="cell-4">52</td>
+                                                        <td><a href="#">Cambridge 5k Parkrun</a></td>
                                                     </tr>
-                                                    <tr class="last">
-                                                        <td class="cell-1">6</td>
-                                                        <td class="cell-2"><a href="#">Everton</a></td>
-                                                        <td class="cell-3">30</td>
-                                                        <td class="cell-4">48</td>
-                                                    </tr>
+                                                    @* <tr>
+                                                    <td class="cell-1">2</td>
+                                                    <td class="cell-2"><a href="#">Liverpool</a></td>
+                                                    <td class="cell-3">30</td>
+                                                    <td class="cell-4">64</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="cell-1">3</td>
+                                                    <td class="cell-2"><a href="#">Chelsea</a></td>
+                                                    <td class="cell-3">30</td>
+                                                    <td class="cell-4">61</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="cell-1">4</td>
+                                                    <td class="cell-2"><a href="#">Arsenal</a></td>
+                                                    <td class="cell-3">30</td>
+                                                    <td class="cell-4">55</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="cell-1">5</td>
+                                                    <td class="cell-2"><a href="#">Aston Villa</a></td>
+                                                    <td class="cell-3">30</td>
+                                                    <td class="cell-4">52</td>
+                                                </tr>
+                                                <tr class="last">
+                                                    <td class="cell-1">6</td>
+                                                    <td class="cell-2"><a href="#">Everton</a></td>
+                                                    <td class="cell-3">30</td>
+                                                    <td class="cell-4">48</td>
+                                                </tr>*@
                                                 </tbody>
                                             </table>
                                         </div>
@@ -349,7 +368,7 @@
                             </div>
                             <!-- box3 end -->
 
-                           
+
 
                         </div>
                     </div>
@@ -358,3 +377,11 @@
         </div>
     </div>
 </div>
+
+@*Templates *@
+<script id='thumbnailsTemplate' type="text/x-jquery-tmpl">
+    <a href="${Url}" rel="${VPath}">
+        <img src="${UrlThumbnail}" />
+    </a>
+
+</script>

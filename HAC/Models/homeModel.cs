@@ -1,25 +1,16 @@
-﻿using System;
+﻿using HAC.Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using HAC.Domain;
 
 namespace HAC.Models
 {
     public class HomeModel
     {
-        public List<Events> latestEvents { get; set; }
-        public Member Member { get; set;}
+        public List<Event> latestEvents { get; set; }
+        public List<Event> latestNews { get; set; }
+        public Member Member { get; set; }
+        public List<pic_images> latestPhotos { get; set; }
 
-    public HomeModel()
-    {
-        Member = new Member()
-            {
-                Email = "ian@com",
-                Password = "TEST"
-            };
-    
-    }
+
 
     }
 }

@@ -25,25 +25,33 @@
     #container1 {
         margin: 0 auto;
         width: 680px;
+        height: 680px;
         background: #fff;
-        padding-bottom: 20px;
     }
 
     #content1 {
-        margin: 10px 20px;
+        margin: 10px 0 10px 0;
+        
     }
 
    
   
 </style>
-
+ <div class="box">
+   
 <div id="container1">
-    <h2>SiteMap</h2>
+    
     <div id="content1">
-
-        <noscript>
-            <p><strong>Sorry, this page needs JavaScript to make any sense at all</strong></p>
-        </noscript>
+         <div class="left-top-corner">
+                                    <div class="right-top-corner">
+                                        <div class="right-bot-corner">
+                                            <div class="left-bot-corner">
+                                                <div class="inner">
+                                                    <div class="wrapper">
+                                                    <h2>SiteMap</h2>
+                                                        </div> </div> </div> </div> </div> </div>
+        
         @Html.MvcSiteMap().SiteMap(true)
     </div>
 </div>
+     </div>

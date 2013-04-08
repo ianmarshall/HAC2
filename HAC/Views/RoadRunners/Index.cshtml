@@ -1,31 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Road Runners";
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Road Runners</h2>
+
 <h2>Index</h2>
+@Html.Partial("~/Views/Shared/UnderConstruction.cshtml")
 
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-  div { color:blue; }
-  span { color:red; }
-  </style>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-</head>
-<body>
-  <div>
-    The values stored were
-    <span></span>
-    and
-    <span></span>
-  </div>
-<script>
-$("div").data("test", { first: 16, last: "pizza!" });
-$("span:first").text($("div").data("test").first);
-$("span:last").text($("div").data("test").last);
-</script>
 
-</body>
-</html>

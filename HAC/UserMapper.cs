@@ -1,17 +1,17 @@
 ﻿namespace HAC
 {
-    using System;
     using AutoMapper;
     using HAC.Domain;
     using HAC.Models;
+    using System;
 
-    public class UserMapper 
+    public class UserMapper
     {
-       static UserMapper()
+        static UserMapper()
         {
             Mapper.CreateMap<Member, ViewModelMember>();
             Mapper.CreateMap<ViewModelMember, Member>();
-           // Mapper.AssertConfigurationIsValid();
+            // Mapper.AssertConfigurationIsValid();
         }
 
         public object Map(object source, Type sourceType, Type destinationType)

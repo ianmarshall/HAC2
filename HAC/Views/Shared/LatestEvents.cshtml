@@ -1,5 +1,5 @@
 ﻿@using HAC.Domain
-@model List<HAC.Domain.Events>
+@model List<Event>
 <!-- title-box4 begin -->
 
 <div class="title-box4">
@@ -39,27 +39,27 @@
                     });
 
                 </script>
-                @foreach (Events ev in Model)
+                @foreach (Event ev in Model)
 {
-    <div id="@ev.Id" class="dialog" title="Upcoming Event" style="display:none">
+    <div id="@ev.ID" class="dialog" title="Upcoming Event" style="display:none">
         <p id="title">@ev.Title  test</p>
         <p id="wrapper">Location: @ev.Location</p>
         <p>Date: @ev.Date</p>
         <p>Description: @ev.Description</p>
         <p>URL: <a target="_new" href="@ev.URL">@ev.URL</a></p>
-        <div id="postedby">Posted by @ev.Name @ev.Lname on @ev.udate</div>
+        <div id="postedby">Posted by @ev.name @ev.lname on @ev.udate</div>
     </div>
    
 }
                 <ul class="list1" id="latestEvents">
 
-                    @foreach (Events ev in Model)
+                    @foreach (Event ev in Model)
                     {
                         <li>
                             <div>
-                                @ev.EventDate
+                                @ev.Date
                             </div>
-                            <a href="#@ev.Id">@ev.Title</a></li>
+                            <a href="#@ev.ID">@ev.Title</a></li>
                     }
                 </ul>
 

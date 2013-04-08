@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using HAC.Domain.Repositories;
 using HAC.Models;
-using HAC.Domain;
-using HAC.Domain.Repositories;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace HAC.Controllers
 {
@@ -16,14 +12,17 @@ namespace HAC.Controllers
 
         public ViewResult Index()
         {
-           EventRepository eventRepository = new EventRepository();
+            EventRepository eventRepository = new EventRepository();
+            PhotoRepository photoRepository = new PhotoRepository();
 
-           // HomeModel homeModel = new HomeModel()
-                //{
-                //    latestEvents = eventRepository.GetRecentEvents(8)
-                //};
+            HomeModel homeModel = new HomeModel()
+                {
+                    latestEvents = eventRepository.GetLatestEvents(6).ToList(),
+                    latestNews = eventRepository.GetLatestNews(3).ToList(),
+                    latestPhotos = photoRepository.GetCategoryImages(38)
+                };
 
-            return View();
+            return View(homeModel);
         }
 
         public ViewResult SiteMap()
@@ -37,7 +36,7 @@ namespace HAC.Controllers
             return View();
         }
 
-       
+
 
         public ViewResult Sports()
         {
@@ -46,10 +45,10 @@ namespace HAC.Controllers
         [HttpGet]
         public ViewResult Login()
         {
-           
+
             return View();
         }
-      
+
         //[HttpPost]
         //[AutoMap(typeof (Member), typeof (ViewModelMember))]
         //public ActionResult Login(ViewModelMember memberLogin)
@@ -63,13 +62,13 @@ namespace HAC.Controllers
 
 
         private string feedUrl = "http://newsrss.bbc.co.uk/";
-        
+
         private string resource = "rss/sportonline_uk_edition/athletics/rss.xml";
         private string user = "";
         private string password = "";
 
 
-       
+
         //public List<GetRssFeed.Models.Item> GetFeed()
         //{
         //    feedUrl = "http://world-track.org/";

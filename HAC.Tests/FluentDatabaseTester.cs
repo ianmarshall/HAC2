@@ -16,47 +16,51 @@ namespace HAC.Tests
     [TestFixture]
     public class FluentDatabaseTester
     {
+        private EventRepository eventRepository;
      
         [TestFixtureSetUp]
         public void setUp()
         {
-            DataConfig.EnsureStartup();
+            eventRepository = new EventRepository();
 
         }
 
         [Test]
         public void TestGetEvents()
         {
-            var session = DataConfig.GetSession();
-            
-                var events = session.CreateCriteria<Events>()
-                                    .List<Events>();
+           
 
-                Assert.IsTrue(events.Count > 100);
-            
+
+           // var latestEvents = eventRepository.Events.ToList();
+            Assert.IsTrue(eventRepository.GetLatestEvents(8).Count() > 1);
+
+
         }
 
         [Test]
         public void When_saving_should_write_to_database()
         {
-            var _event = new Events()
-            {
-                Name = "ian",
-                Lname = "marshall",
-                Date = DateTime.Now,udate = DateTime.Now, EndDate = DateTime.Now
+            var _event = new Event()
+                {
+                    name = "iantest",
+                    lname = "marshall",
+                    Date = DateTime.Now,
+                    udate = DateTime.Now,
+                    EndDate = DateTime.Now,
+                    Title = "test",
+                    subject = "sub", Description = "me", URL = "ww.gfe"
+                };
 
-            };
-            var repository = new EventRepository();
-            repository.Save(_event);
-            Events loadedEvent;
-            using (ISession session = DataConfig.GetSession())
-            {
-                loadedEvent = session.Load<Events>(
-                    _event.Id);
-            }
-            Assert.That(loadedEvent, Is.Not.Null);
-            Assert.That(loadedEvent.Name,
-                        Is.EqualTo("ian"));
+            eventRepository.Save(_event);
+
+
+          
+            //var ev = eventRepository.Events.FirstOrDefault(x => x.name == "iantest");
+
+
+            //Assert.That(ev, Is.Not.Null);
+            //Assert.That(ev.name,
+            //            Is.EqualTo("iantest"));
 
         }
     }

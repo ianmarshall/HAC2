@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using System.Text;
+using System.Web;
 using System.Web.Security;
 using HAC.Domain.Repositories;
 
 namespace HAC.Infrastructure
 {
+    [AspNetHostingPermissionAttribute(SecurityAction.InheritanceDemand, Level = AspNetHostingPermissionLevel.Minimal)]
+    [AspNetHostingPermissionAttribute(SecurityAction.LinkDemand, Level = AspNetHostingPermissionLevel.Minimal)]
     public class CustomMembershipProvider : MembershipProvider
     {
         public override string ApplicationName
@@ -77,10 +81,10 @@ namespace HAC.Infrastructure
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            var member = new MemberRepository().GetMember(username);
-            if (member != null)
+            var profile = new ProfileRepository().GetProfile(username);
+            if (profile != null)
             {
-                var memUser = new MembershipUser("CustomMembershipProvider", username, member.Id, member.Email,
+                var memUser = new MembershipUser("CustomMembershipProvider", username, profile.Id, profile.Email,
                                                  string.Empty, string.Empty,
                                                  true, false, DateTime.MinValue,
                                                  DateTime.MinValue,
@@ -158,10 +162,11 @@ namespace HAC.Infrastructure
 
         public override bool ValidateUser(string username, string password)
         {
-            var md5Hash = GetMd5Hash(password);
-            var member = new MemberRepository().GetMember(username);
+           // var md5Hash = GetMd5Hash(password);
+            var profile = new ProfileRepository().GetProfile(username);
 
-            return (member != null && member.Password == password);
+            return (profile != null && profile.password == password);
+            
         }
 
         public static string GetMd5Hash(string value)

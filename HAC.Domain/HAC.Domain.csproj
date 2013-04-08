@@ -36,63 +36,126 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>hacdomain.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Live|AnyCPU'">
+    <OutputPath>bin\Live\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dubug|AnyCPU'">
+    <OutputPath>bin\Dubug\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\src\NHibernate.Example.Web\Bin\Antlr3.Runtime.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\src\NHibernate.Example.Web\Bin\Iesi.Collections.dll</HintPath>
+      <HintPath>..\..\..\Downloads\mysql-connector-net-6.3.9-src\Source\MySql.Data.Entity\bin\Release\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data.Entity, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\src\NHibernate.Example.Web\Bin\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Remotion.Linq">
-      <HintPath>..\..\src\NHibernate.Example.Web\Bin\Remotion.Linq.dll</HintPath>
+      <HintPath>..\..\..\Downloads\mysql-connector-net-6.3.9-src\Source\MySql.Data.Entity\bin\Release\MySql.Data.Entity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataConfig.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Events.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="Legacy\EventsMapping.cs" />
-    <Compile Include="Profile.cs" />
-    <Compile Include="Member.cs" />
+    <Compile Include="Event.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAC2Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HAC2Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAC2Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HAC2Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HAC2Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="link.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Member.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="membership.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pic_categories.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pic_groups.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pic_images.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PhotoRepository.cs" />
+    <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Repositories\MemberRepository.cs" />
     <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repository.cs" />
+    <Compile Include="result.cs">
+      <DependentUpon>HAC2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SetUp.cs" />
     <Compile Include="Tools\TextTools.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="HAC2Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HAC2Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="HAC2Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HAC2Model.edmx</DependentUpon>
+      <LastGenOutput>HAC2Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="HAC2Model.edmx.diagram">
+      <DependentUpon>HAC2Model.edmx</DependentUpon>
+    </None>
+    <None Include="HAC2Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HAC2Model.edmx</DependentUpon>
+      <LastGenOutput>HAC2Model.cs</LastGenOutput>
+    </None>
     <None Include="hacdomain.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Readme\" />
+    <Folder Include="Entities\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Schema\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Member.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Profile.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Events.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Readme\NHibernate.DependencyInjection.Readme..txt" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

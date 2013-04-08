@@ -25,9 +25,10 @@ namespace HAC.Controllers
             base.Initialize(requestContext);
         }
 
-        public ActionResult Index()
+        [Authorize]
+        public ViewResult Index()
         {
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
         public JsonResult SignIn(string username, string password)
@@ -39,7 +40,7 @@ namespace HAC.Controllers
                     FormsService.SignIn(username, true);
 
 
-                    return Json(new { success = true, redirect = Url.Action("Index", "StIves10k") });
+                    return Json(new { success = true, redirect = Url.Action("Index") });
                 }
 
                 return Json(new { error = "The user name or password provided is incorrect" });
@@ -48,11 +49,11 @@ namespace HAC.Controllers
             return Json(new { error = "System error" });
         }
 
-
-        public void SignOut()
+        [Authorize]
+        public ActionResult SignOut()
         {
             FormsService.SignOut();
-            RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
 

@@ -1,6 +1,8 @@
-﻿@{
+﻿using System.IO;
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    //string noimageFilePath = HttpContext.Server.MapPath(HttpContext.Request.ApplicationPath) + "Content\\images" + "\\" + "noimage.jpg";
 }
 
-<h2>Index</h2>
+<h2>Index @HttpContext.Current.Server.MapPath(HttpRuntime.AppDomainAppVirtualPath)</h2>
