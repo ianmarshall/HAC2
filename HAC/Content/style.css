@@ -17,6 +17,10 @@ body {
     margin-right: 1%;
 }
 
+  body.wait {
+        cursor: wait;
+    }
+
 input, select, textarea {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1em;
@@ -133,6 +137,10 @@ div#users-contain {
 .wrapper {
     width: 100%;
     overflow: hidden;
+}
+
+.display-inline {
+    display: inline-block;
 }
 
 .category {
@@ -480,7 +488,7 @@ h2 {
     background: url(images/arrow4.gif) no-repeat right top;
     text-decoration: none;
     display: block;
-     padding: 0 22px 0 0;
+    padding: 0 22px 0 0;
 }
 
     .linkH2:hover {
@@ -495,11 +503,11 @@ h3 {
 
 h4 {
     font-size: 1.27em;
-    border-bottom: 1px solid #b2aea9;
+    /*border-bottom: 1px solid #b2aea9;*/
     color: #726d66;
-    line-height: 1.2em;
-    padding: 7px 0 6px 10px;
-    margin-bottom: 14px;
+    /*line-height: 1.2em;*/
+    padding: 5px 0 4px 0px;
+    margin-bottom: 3px;
     margin-left: 10px;
 }
 
@@ -650,6 +658,12 @@ h6 {
     background-image: url(images/line-ver.gif);
     background-repeat: repeat-y;
     width: 100%;
+}
+
+#accordion-resizer {
+    /*padding: 6px;*/
+    /*width: 400px;*/
+    /*height: 320px;*/
 }
 
 .title {
@@ -1131,6 +1145,32 @@ h6 {
         padding: 18px 20px 0 0;
     }
 
+
+/*footer*/
+.postedby {
+    text-align: left;
+    border-top: 1px solid black;
+    background-image: none;
+    padding: .3em 2em .5em .4em;
+    margin-top: 10px;
+    font-size: 7pt;
+    color: gray;
+}
+
+    .postedby a {
+        color: #838281;
+        text-decoration: none;
+    }
+
+#post a:hover {
+    text-decoration: underline;
+}
+
+.postedby p {
+    margin: 0;
+    padding: 18px 20px 0 0;
+}
+
 /*=============MVC PHOTO GALLERY=============================*/
 
 
@@ -1316,3 +1356,9 @@ li.subfolder > a {
 li.folder > a {
     color: Black;
 }
+
+/*.ui-datepicker
+    {
+        z-index: 1003 !important; /* must be > than popup editor (1002) */
+    }*/
+

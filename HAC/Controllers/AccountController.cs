@@ -1,21 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using HAC.Models;
+using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using HAC.Models;
-using HAC.Services;
+using AccountMembershipService = HAC.Models.AccountMembershipService;
+
+//using HAC.Services;
 
 
 namespace HAC.Controllers
 {
+    [HandleError]
     public class AccountController : Controller
     {
-        public FormsAuthenticationService FormsService { get; set; }
-        public AccountMembershipService MembershipService { get; set; }
+        //public FormsAuthenticationService FormsService { get; set; }
+        //public AccountMembershipService MembershipService { get; set; }
+
+        //protected override void Initialize(RequestContext requestContext)
+        //{
+        //    if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
+        //    if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
+
+        //    base.Initialize(requestContext);
+        //}
+
+        public IFormsAuthenticationService FormsService { get; set; }
+        public IMembershipService MembershipService { get; set; }
 
         protected override void Initialize(RequestContext requestContext)
         {
@@ -28,7 +39,38 @@ namespace HAC.Controllers
         [Authorize]
         public ViewResult Index()
         {
+
             return View();
+        }
+
+        public ActionResult Register()
+        {
+
+            return View("Register");
+        }
+
+        [HttpPost]
+        public ActionResult Register(RegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
+            return View("Register", model);
         }
 
         public JsonResult SignIn(string username, string password)
@@ -38,11 +80,8 @@ namespace HAC.Controllers
                 if (MembershipService.ValidateUser(username, password))
                 {
                     FormsService.SignIn(username, true);
-
-
                     return Json(new { success = true, redirect = Url.Action("Index") });
                 }
-
                 return Json(new { error = "The user name or password provided is incorrect" });
             }
 
@@ -64,7 +103,7 @@ namespace HAC.Controllers
                                 userName,                      // user name
                                 DateTime.Now,                  // created
                                 DateTime.Now.AddMinutes(20),  // expires
-                                true,                    // persistent?
+                                false,                    // persistent?
                                 "Moderator;Member"                        // can be used to store roles
                                                             );
 
@@ -72,6 +111,8 @@ namespace HAC.Controllers
 
             var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
             HttpContext.Response.Cookies.Add(authCookie);
+
+
         }
 
     }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Security;
 
 namespace HAC.Services
@@ -75,5 +72,10 @@ namespace HAC.Services
         {
             return _provider.GetUser(key, true);
         }
+
+         public MembershipUser GetUser(string username, bool userIsOnline)
+         {
+             return _provider.GetUser(username, userIsOnline);
+         }
     }
 }

@@ -34,5 +34,6 @@ namespace HAC.Domain
         public DbSet<pic_categories> pic_categories { get; set; }
         public DbSet<pic_groups> pic_groups { get; set; }
         public DbSet<pic_images> pic_images { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
     }
 }

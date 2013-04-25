@@ -1,0 +1,45 @@
+﻿@model HAC.Domain.Announcement
+@{
+    ViewBag.Title = "AddAnnouncement";
+}
+
+@using (Html.BeginForm("Save", "Announcement"))
+{
+    <table border="0" width="82%">
+
+        <tr>
+            <td width="10%" align="right"><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2">Title:</font></td>
+            <td><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <input type="text" name="Title" size="80">
+                </font><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2">&nbsp; 
+                       </font></td>
+            <td rowspan="2">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td width="10%" height="20" align="right"><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2">Date:</font></td>
+            <td colspan="2" height="20"><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2">
+
+                @Html.EditorFor(model => model.ExpiryDate)
+
+            </td>
+        </tr>
+
+        <tr>
+            <td width="10%" align="right" valign="top"><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2">Description:</font></td>
+            <td><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2"> 
+                    <textarea name="Description" wrap="VIRTUAL" cols="100" rows="20"></textarea>
+                </font></td>
+            <td align="right" valign="top">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td align="right">&nbsp;</td>
+            <td colspan="2"><font face="Tahoma, Verdana, Arial, Helvetica, sans-serif" size="2">&nbsp; 
+                                <input type="submit" value="Add Event">
+                            </font></td>
+        </tr>
+    </table>
+}
+
+

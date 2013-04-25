@@ -1,0 +1,28 @@
+﻿@using HAC.Domain
+@using System
+@model List<Announcement>
+<dl class="news" id="accordion">
+
+    @foreach (Announcement announcement in Model)
+    {
+       
+        <dt>@announcement.Title</dt>
+        <dd>@Html.Raw(announcement.Description)
+
+            <div class="postedby">
+                Posted by @announcement.UserName on @announcement.CreateDate.ToString("d") - Expires on @announcement.ExpiryDate.ToString("d")
+                <br/>
+             <a href="#" onclick="showUrlInDialog('Announcement/Amend/@announcement.ID', {modal: false, title: 'Edit', error: function() { alert('Could not load form') }}); return false;">Edit</a>
+            </div>
+        </dd>
+    }
+    @* <dt>St Ives 10k - 21st July 2013</dt>
+    <dd><a href="#">Help required
+                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
+    <dt>Serie A</dt>
+    <dd><a href="#">Impossible to stop Inter praesent vestibulum molestie lacus.
+                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
+    <dt>Serie A</dt>
+    <dd class="last"><a href="#">Milan is saving the intrigue.
+                                                                                     <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>*@
+</dl>

@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="dboModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="dboModelStoreContainer">
+          <EntitySet Name="announcements" EntityType="dboModel.Store.announcements" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="events" EntityType="dboModel.Store.events" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="links" EntityType="dboModel.Store.links" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="member" EntityType="dboModel.Store.member" store:Type="Tables" Schema="dbo" />
@@ -24,6 +25,21 @@
             <End Role="pic_categories" EntitySet="pic_categories" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="announcements">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="Description" Type="varchar" MaxLength="4000" />
+          <Property Name="CreateDate" Type="date" Nullable="false" />
+          <Property Name="ExpiryDate" Type="date" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="UserName" Type="varchar" MaxLength="45" />
+          <Property Name="PhotoImageId" Type="int" />
+          <Property Name="PhotoCategoryId" Type="int" />
+        </EntityType>
         <EntityType Name="events">
           <Key>
             <PropertyRef Name="ID" />
@@ -260,6 +276,7 @@
             <End Role="pic_groups" EntitySet="pic_groups" />
             <End Role="pic_categories" EntitySet="pic_categories" />
           </AssociationSet>
+          <EntitySet Name="Announcements" EntityType="dboModel.Announcement" />
         </EntityContainer>
         <EntityType Name="Member">
           <Key>
@@ -479,6 +496,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" />
+          <Property Type="String" Name="Description" />
+          <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+          <Property Type="DateTime" Name="ExpiryDate" Nullable="false" />
+          <Property Type="DateTime" Name="LastModified" Nullable="false" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="String" Name="UserName" />
+          <Property Type="Int32" Name="PhotoImageId" />
+          <Property Type="Int32" Name="PhotoCategoryId" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -681,6 +713,22 @@
                 <ScalarProperty Name="PIC_NAME" ColumnName="PIC_NAME" />
                 <ScalarProperty Name="PIC_CAT" ColumnName="PIC_CAT" />
                 <ScalarProperty Name="PIC_ID" ColumnName="PIC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="dboModel.Announcement">
+              <MappingFragment StoreEntitySet="announcements">
+                <ScalarProperty Name="PhotoCategoryId" ColumnName="PhotoCategoryId" />
+                <ScalarProperty Name="PhotoImageId" ColumnName="PhotoImageId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

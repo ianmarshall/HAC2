@@ -1,0 +1,19 @@
+﻿@*
+Don't forget to reference the JQuery Library here, inside your view or layout.
+<script src="@Url.Content("~/Scripts/jquery-1.7.x.min.js")" type="text/javascript"></script>
+*@
+
+<link rel="stylesheet" href="~/Content/redactor/redactor.css" /> @* NOTE : You can reference redactor css and script inside your view or layout too. *@
+<script src="~/Scripts/redactor/redactor.js"></script>
+
+@Html.TextArea(string.Empty,
+    ViewData.TemplateInfo.FormattedModelValue
+)
+
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $('#@ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty)').redactor(); @* You can use editor options here more informationabout redactor options look at http://imperavi.com/redactor/docs/settings/ *@
+        }
+    );
+</script>

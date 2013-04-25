@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "News";
+}
+
+<h2>News</h2>
+
+
+<script type="text/javascript">
+    $(function() {
+        $('#test').click(function() {
+           
+            $('#calc').clone().appendTo('#lightbox');
+            $('#lightbox div').replaceWith(function() {
+                return $('<input value="' + $(this).val() + '" />');
+            });
+        });
+    });
+    
+    $(document).ready(function () {
+        $('.edit').editable(function (value, settings) {
+            alert("here");
+        });
+    });
+</script>
+<div id="calc">
+<table>
+<tr>
+<td>Principal:</td>
+<td><div/>test<div></div></td>
+</tr>
+<tr>
+<td>start date:</td>
+<td><input value="02/02/2002" readonly="readonly" /></td>
+</tr>
+<tr>
+<td>end date:</td>
+<td><input value="02/02/2002" /></td>
+</tr>
+</table>
+</div>
+
+<button id="test">Click Me</button>
+
+<div id="lightbox"></div>
+<script>
+
+</script>
+<div class="edit" id="div_1">Dolor</div>
+<div class="edit_area" id="div_2">Lorem ipsum dolor sit amet, consectetuer 
+adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
+magna aliquam erat volutpat.</div>

@@ -92,7 +92,7 @@ function OpenFolder(folderVPath, callback) {
     $(linkFolder).show();
     $(linkFolder).parents().show();
     //ApplyStyleSelectedFolder(folderVPath);
-
+  
     loadThumbnailsByFolder(folderVPath, function (error, thumbnails) {
         if (!error) {
             DisplayThumbnails(thumbnails);
@@ -100,6 +100,7 @@ function OpenFolder(folderVPath, callback) {
                 callback();
         }
     });
+    
 }
 
 function IsFolderSelected(folder) {
@@ -175,11 +176,11 @@ function ShowMainArea(id) {
 
 function LoadImage(url) {
     //$('#mainImageContainer img').fadeOut('fast'); //transition effect
-
+  
     $.ajax({
         url: url, success: function (data) {
 
-        
+            
             viewModel.mainimageurl(data.ImageVPath);
             //viewModel.imagepubliclink(data.ImageMainPage);
 
@@ -212,7 +213,7 @@ function LoadImage(url) {
             //}
          
 
-            $('#ImageVPath').val(data.ImageVPath);
+          //  $('#ImageVPath').val(data.ImageVPath);
           //  $('#ImageVPathEditImageInfo').val(data.ImageVPath);
 
             //$('#mainImageContainer img').fadeIn('fast');
@@ -251,6 +252,7 @@ function DisplayThumbnails(thumbnails) {
 /*Load thumbnails */
 function loadThumbnails(url) {
     cache_queue = [];
+   
     $.ajax({
         url: url,
         success: function (data) { //fetch thumbnails from folder          
@@ -287,7 +289,7 @@ function DisplayHomeThumbnails(thumbnails) {
 function loadThumbnailsByFolderLink(link, autoclick_first_thumbnail, thumbnail_to_open) {
     var url = $(link).attr('href');
 
-    
+ 
 
     cache_queue = [];
 

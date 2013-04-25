@@ -60,11 +60,15 @@
     </Reference>
     <Reference Include="MySql.Data, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Downloads\mysql-connector-net-6.3.9-src\Source\MySql.Data\bin\Release\MySql.Data.dll</HintPath>
+      <HintPath>..\..\..\Downloads\mysql-connector-net-6.3.9-src\Source\MySql.Data.Entity\bin\Release\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data.Entity, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Downloads\mysql-connector-net-6.3.9-src\Source\MySql.Data.Entity\bin\Release\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web, Version=6.6.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Downloads\mysql-connector-net-6.3.9-src\Source\MySql.Web\bin\release\MySql.Web.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -90,6 +94,7 @@
     <Compile Include="AutoMapFilter.cs" />
     <Compile Include="BaseActionFilter.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\AnnouncementController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -99,6 +104,7 @@
     <Compile Include="Controllers\JuniorsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PGFolderController.cs" />
     <Compile Include="Controllers\PGImageController.cs" />
     <Compile Include="Controllers\PhotosController.cs" />
@@ -115,6 +121,7 @@
     <Compile Include="Infrastructure\CustomRoleProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Configuration.cs" />
+    <Compile Include="Models\Enums\Roles.cs" />
     <Compile Include="Models\ExifReader.cs" />
     <Compile Include="Models\Extensions\DateTimeExtension.cs" />
     <Compile Include="Models\homeModel.cs" />
@@ -236,6 +243,7 @@
     <Content Include="Content\images\slide5.jpg" />
     <Content Include="Content\images\slide6.jpg" />
     <Content Include="Content\images\spacer.gif" />
+    <Content Include="Content\images\spinner.gif" />
     <Content Include="Content\images\submit.gif" />
     <Content Include="Content\images\tail-top.jpg" />
     <Content Include="Content\images\titl-box-left.gif" />
@@ -250,8 +258,24 @@
     <Content Include="Content\images\title-box4-left.gif" />
     <Content Include="Content\images\title-box4-right.gif" />
     <Content Include="Content\images\UnderConstruction1.png" />
+    <Content Include="Content\jHtmlArea\jHtmlArea.ColorPickerMenu.css" />
+    <Content Include="Content\jHtmlArea\jHtmlArea.css" />
+    <Content Include="Content\jHtmlArea\jHtmlArea.Editor.css" />
+    <Content Include="Content\jHtmlArea\jHtmlArea.png" />
+    <Content Include="Content\jHtmlArea\jHtmlArea_Toolbar_Group_BG.png" />
+    <Content Include="Content\jHtmlArea\jHtmlArea_Toolbar_Group__Btn_Select_BG.png" />
     <Content Include="Content\jMenu.jquery.css" />
     <Content Include="Content\jquery.thumbnailScroller.css" />
+    <None Include="Scripts\jHtmlArea-0.7.5-vsdoc.js" />
+    <None Include="Scripts\jHtmlArea-0.7.5.min-vsdoc.js" />
+    <Content Include="Content\redactor\redactor.css" />
+    <Content Include="Scripts\jHtmlArea-0.7.5.js" />
+    <Content Include="Scripts\jHtmlArea-0.7.5.min.js" />
+    <Content Include="Scripts\jHtmlArea.ColorPickerMenu-0.7.0.js" />
+    <Content Include="Scripts\jHtmlArea.ColorPickerMenu-0.7.0.min.js" />
+    <None Include="Scripts\jquery-1.8.3.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.3.js" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.13.custom.min.js" />
     <Content Include="Content\layout.css" />
     <Content Include="Content\style.css" />
@@ -317,6 +341,7 @@
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.jeditable.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.thumbnailScroller.js" />
     <Content Include="Scripts\jquery.tmpl.min.js" />
@@ -325,11 +350,17 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\knockout-1.2.1.js" />
+    <Content Include="Scripts\knockout-2.2.1.debug.js" />
+    <Content Include="Scripts\knockout-2.2.1.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="ajaxphotogallery.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\nicEdit.js" />
+    <Content Include="Scripts\nicEditorIcons.gif" />
+    <Content Include="Scripts\redactor\redactor.js" />
+    <Content Include="Scripts\redactor\redactor.min.js" />
     <Content Include="Scripts\sitemapstyler\collapsed.gif" />
     <Content Include="Scripts\sitemapstyler\expanded.gif" />
     <Content Include="Scripts\sitemapstyler\line1.gif" />
@@ -343,7 +374,7 @@
     <Content Include="Views\Shared\index-1.html" />
     <Content Include="Views\Shared\index-2.html" />
     <Content Include="Views\Shared\index.html" />
-    <Content Include="Web.config">
+    <Content Include="WebOLD.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -442,6 +473,17 @@
     <Content Include="Views\Main\CategoryTree.cshtml" />
     <Content Include="Views\Photos\Index.cshtml" />
     <Content Include="Views\Photos\Add.cshtml" />
+    <Content Include="Views\Shared\LatestAnnouncements.cshtml" />
+    <Content Include="Views\Announcement\Create.cshtml" />
+    <Content Include="Views\Announcement\Index.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Redactor.cshtml" />
+    <Content Include="Views\Shared\Announcement1.cshtml" />
+    <Content Include="Views\Shared\Amend.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -450,6 +492,16 @@
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="WebOLD.Debug.config">
+      <DependentUpon>WebOLD.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="WebOLD.Live.config">
+      <DependentUpon>WebOLD.config</DependentUpon>
+    </None>
+    <None Include="WebOLD.Release.config">
+      <DependentUpon>WebOLD.config</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -500,7 +552,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50108</DevelopmentServerPort>
+          <DevelopmentServerPort>58581</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

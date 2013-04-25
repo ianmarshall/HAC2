@@ -52,6 +52,12 @@ namespace HAC
             new { controller = "PGImage", action = "Index", ImageVPath = UrlParameter.Optional } // Valores predeterminados de parámetro
             );
 
+
+            routes.MapRoute(
+                            "Image", // Nombre de ruta
+                            "Image/{id}", // URL con parámetros
+                            new { controller = "PGImage", action = "Index", id = UrlParameter.Optional } // Valores predeterminados de parámetro
+                            );
             routes.MapRoute(
              "MainFolderList", // Nombre de ruta
              "Main/Folder/List/{folder}", // URL con parámetros

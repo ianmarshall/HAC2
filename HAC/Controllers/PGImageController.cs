@@ -101,9 +101,10 @@ namespace HAC.Controllers
                 return Json(imageJson, JsonRequestBehavior.AllowGet);
             else
             {
-                ViewBag.SelectedImage = "Image?id=" + image.PIC_ID;
+                ViewBag.SelectedImage = "Image/" + image.PIC_ID;
                 ViewBag.Categories = rep.GetCategories();
-                ViewBag.SelectedCategory = "Category/List/" + image.PIC_CAT;
+                ViewBag.SelectedCategory = Util.GetApplicationFullUrlWithoutLastSlash() + "/PHOTOS/Category/List/" +
+                                           image.PIC_CAT;
                 return View("../PHOTOS/Index");
             }
         }

@@ -4,6 +4,10 @@
 @{
     ViewBag.Title = "";
 }
+
+<style>
+  
+</style>
 <script>
     jQuery.noConflict();
     (function ($) {
@@ -24,39 +28,58 @@
         }
     })(jQuery);
 
-
-    $(document).ready(function () {
-        var cur_stus;
+    $(function () {
         $("#accordion").accordion({
-            heightStyle: "content"
-        });
-        //close all on default
-        $('#accordion dd').hide();
-        $('#accordion dt').attr('stus', '');
-
-        //open default data
-        $('#accordion dd:eq(0)').slideDown();
-        $('#accordion dt:eq(0)').attr('stus', 'active');
-
-        $('#accordion dt').click(function () {
-            cur_stus = $(this).attr('stus');
-            if (cur_stus != "active") {
-                //reset everthing - content and attribute
-                $('#accordion dd').slideUp();
-                $('#accordion dt').attr('stus', '');
-
-                //then open the clicked data
-                $(this).next().slideDown();
-                $(this).attr('stus', 'active');
-            }
-                //Remove else part if do not want to close the current opened data
-            else {
-                $(this).next().slideUp();
-                $(this).attr('stus', '');
-            }
-            return false;
+           heightStyle: "fill"
         });
     });
+    //$(function () {
+    //    $(function () {
+    //        $("#accordion").accordion();
+    //    });
+
+        //$("#accordion-resizer").resizable({
+        //    minHeight: 140,
+        //    //minWidth: 200,
+        //    resize: function () {
+        //        $("#accordion").accordion("refresh");
+        //    }
+        //});
+ //   });
+
+
+    //$(document).ready(function () {
+    //    var cur_stus;
+    //    $("#accordion").accordion({
+    //        heightStyle: "content"
+    //    });
+    //    //close all on default
+    //    $('#accordion dd').hide();
+    //    $('#accordion dt').attr('stus', '');
+
+    //    //open default data
+    //    $('#accordion dd:eq(0)').slideDown();
+    //    $('#accordion dt:eq(0)').attr('stus', 'active');
+
+    //    $('#accordion dt').click(function () {
+    //        cur_stus = $(this).attr('stus');
+    //        if (cur_stus != "active") {
+    //            //reset everthing - content and attribute
+    //            $('#accordion dd').slideUp();
+    //            $('#accordion dt').attr('stus', '');
+
+    //            //then open the clicked data
+    //            $(this).next().slideDown();
+    //            $(this).attr('stus', 'active');
+    //        }
+    //            //Remove else part if do not want to close the current opened data
+    //        else {
+    //            $(this).next().slideUp();
+    //            $(this).attr('stus', '');
+    //        }
+    //        return false;
+    //    });
+    // });
 
 </script>
 <div id="page1">
@@ -77,45 +100,18 @@
                                                 <div class="inner">
                                                     <div class="wrapper">
                                                         <img class="fleft" src="@Url.Content("~/Content/demo-images/subs.jpg")"/>
+                                                        <div class="extra-wrap" id="accordion-resizer">
 
-                                                        <div class="extra-wrap">
-                                                            <h4>Club Announcements</h4>
+                                                            <div class="wrapper">
+                                                              
+                                                                @Html.ActionLink("View all announcements (" + (string)@Model.activeAnnouncementsCount.ToString() + ")", "Index", "Announcement", null, new { @Class = "link2 fright" })<h4>Latest Announcements</h4>
+                                                            </div>
+                                                            <!--latest Announcements pv-->
 
-                                                            <dl class="news" id="accordion">
-
-
-
-                                                                <dt>MMM<a href="#">Annual Subscirptions Due </a></dt>
-                                                                <dd>Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    
-                                                                    
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    
-                                                                    
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    
-                                                                    
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    
-                                                                    
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    Annual subscriptions due starting 3 January. 10% discount if paid by 31/1. You must pay by 31/1 to be eligible for consideration for a club-allocated spot in the 2014 London Marathon.
-                                                                    <a href="#">
-                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a>
-                                                                </dd>
-                                                                <dt>St Ives 10k - 21st July 2013</dt>
-                                                                <dd><a href="#">Help required
-                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
-                                                                <dt>Serie A</dt>
-                                                                <dd><a href="#">Impossible to stop Inter praesent vestibulum molestie lacus.
-                                                                        <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
-                                                                <dt>Serie A</dt>
-                                                                <dd class="last"><a href="#">Milan is saving the intrigue.
-                                                                                     <img alt="" src="@Url.Content("~/Content/images/marker.gif")" /></a></dd>
-                                                            </dl>
+                                                            @{
+                                                                RenderPartialExtensions.RenderPartial(Html, "LatestAnnouncements", Model.latestAnnouncements);
+                                                            }
+                                                            
                                                         </div>
 
                                                     </div>
@@ -159,7 +155,7 @@
                                     @foreach (pic_images image in Model.latestPhotos)
                                     {
                                         <a href="Image?id=@image.PIC_ID">
-                                            <img src="ThumbnailView/120/120?ImageVPath=@image.PIC_IMAGE"/></a>
+                                            <img src="@ViewBag.FullUrl/ThumbnailView/120/120?ImageVPath=@image.PIC_IMAGE"/></a>
                                     }
                                 </div>
                             </div>
@@ -259,8 +255,8 @@
                                                 <h6 class="alignright">29 July 2009</h6>
                                                 <p class="aligncenter">
                                                     <a href="Category/List/38">
-                                                    <img src="@Url.Content("~/Content/images/SeniorTeam.jpg")" />
-                                                        </a>
+                                                        <img src="@Url.Content("~/Content/images/SeniorTeam.jpg")" />
+                                                    </a>
                                                 </p>
                                                 <div class="inner">
                                                     <h5>Frostbite League Champions!!</h5>
@@ -384,4 +380,4 @@ Congratulations to everyone!
         <img src="${UrlThumbnail}" />
     </a>
 
-</script>
+                                                                </script>

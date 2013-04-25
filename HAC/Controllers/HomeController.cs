@@ -14,13 +14,17 @@ namespace HAC.Controllers
         {
             EventRepository eventRepository = new EventRepository();
             PhotoRepository photoRepository = new PhotoRepository();
+            AnnouncementRepository announcementRepository = new AnnouncementRepository();
 
             HomeModel homeModel = new HomeModel()
                 {
+                    latestAnnouncements = announcementRepository.GetLatestAnnouncements(3).ToList(),
+                    activeAnnouncementsCount = announcementRepository.GetActiveAnnouncements().Count(),
                     latestEvents = eventRepository.GetLatestEvents(6).ToList(),
                     latestNews = eventRepository.GetLatestNews(3).ToList(),
                     latestPhotos = photoRepository.GetCategoryImages(38)
                 };
+            ViewBag.FullUrl = Util.GetApplicationFullUrlWithoutLastSlash();
 
             return View(homeModel);
         }

@@ -41,7 +41,7 @@ namespace HAC.Controllers
                 {
                     VPath = Util.GetApplicationFullUrlWithoutLastSlash() + "/ImageView?ImageVPath=" + HttpUtility.UrlEncode(image.PIC_IMAGE),
                     UrlThumbnail = Util.GetApplicationFullUrlWithoutLastSlash() + "/ThumbnailView/120/120?ImageVPath=" + HttpUtility.UrlEncode(image.PIC_IMAGE),
-                    Url = HttpContext.Request.ApplicationPath.TrimEnd('/') + "/Image?id=" + image.PIC_ID,
+                    Url = HttpContext.Request.ApplicationPath.TrimEnd('/') + "/Image/" + image.PIC_ID,
                     UrlFullImage = Util.GetApplicationFullUrlWithoutLastSlash() + "/ImageView?ImageVPath=" + HttpUtility.UrlEncode(image.PIC_IMAGE),
                     Name = image.PIC_NAME,
                 });
@@ -59,7 +59,7 @@ namespace HAC.Controllers
                 return Json(new { thumbnails = list, htmlcontent = content }, JsonRequestBehavior.AllowGet);
             else
             {
-                ViewBag.SelectedImage = Util.GetApplicationFullUrlWithoutLastSlash() + "/Image?id=" + images[0].PIC_ID;
+                ViewBag.SelectedImage = "Image/" + images[0].PIC_ID;
                 ViewBag.Categories = rep.GetCategories();
                 ViewBag.SelectedCategory = Util.GetApplicationFullUrlWithoutLastSlash() + "/PHOTOS/Category/List/" + iCat;
 
@@ -76,7 +76,7 @@ namespace HAC.Controllers
             {
                 currentCategory.CAT_IMAGE = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
                 var path = Path.Combine(Configuration.GetPicturesPhysicalPath, currentCategory.CAT_IMAGE);
-           
+
 
                 var settings = new ResizeSettings
                 {

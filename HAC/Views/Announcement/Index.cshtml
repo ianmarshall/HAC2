@@ -1,0 +1,140 @@
+﻿@model List<HAC.Domain.Announcement>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<script>
+   
+     
+
+        //function showUrlInDialog(url){
+        //    var tag = $("<div></div>");
+
+        //    alert("test");
+        //    $.ajax({
+        //        url: url,
+        //        success: function(data) {
+        //            tag.html(data).dialog({modal: true}).dialog('open');
+        //        }
+        //    });
+        //}
+
+
+
+
+//$(document).ready(function () {
+    //    $("#ExpiryDate").datepicker({ dateFormat: "dd/mm/yy" });
+   
+
+    //});
+
+
+    //$("#create-announcement")
+    //    .button()
+    //    .click(function () {
+    //        showDialog();
+    //    });
+        
+    function showDialog() {
+        $("#dialog-modal").dialog({
+            width: 600,
+            height: 400,
+            //show: 'slide',
+            //complete: function () {
+            //   // $("#Desc").redactor({ autoresize: false });
+            //    height: 400;
+            //}
+
+            open: function(event, ui) {
+                var textarea = $('<input type="text" size="50"/><input type="text" id="date"/><textarea id="titt" style="height: 276px;">');
+                var htmlStr = $("#dialog").html();
+                // $(this).html(htmlStr);
+                //$("#Desc").redactor({ autoresize: false });
+                //$("#Desc").setCode('<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>');
+                $(this).html(textarea);
+                $("#titt").redactor({ autoresize: false });
+            },
+            buttons: {
+                "Create an account": function() {
+                }
+            }
+        });
+        $("#date").datepicker({ dateFormat: "dd/mm/yy" });
+    }
+
+
+    function showUrlInDialog(url, options){
+      
+        if ($("#announce").length == 0) {
+            $('body').addClass('wait');
+            options = options || {};
+            var tag = $("<div id='announce'></div>"); //This tag will the hold the dialog content.
+          
+            $.ajax({
+                url: url,
+                type: (options.type || 'GET'),
+                beforeSend: options.beforeSend,
+                error: options.error,
+                complete: options.complete,
+                success: function(data, textStatus, jqXHR) {
+                    if (typeof data == "object" && data.html) { //response is assumed to be JSON
+                        tag.html(data.html).dialog({ modal: options.modal, title: data.title }).dialog('open');
+                    } else { //response is assumed to be HTML
+                        tag.html(data).dialog({
+                            close: function(ev, ui) {
+                                //$(this).remove();
+                                // $("#announce").remove();
+                                $(".redactor_dropdown").remove();
+                                $(this).remove();
+                            },
+                                //    $(".ui-dialog").remove();
+                            //    $(".redactor_dropdown").remove();
+                            //    $("#announce").remove();
+                            //},
+                            open: function (ev, ui) {
+                                $('#ExpiryDate').datepicker();
+                                $('#Description').redactor({ autoresize: false });
+                            },
+                            modal: options.modal,
+                            title: options.title,
+                            minHeight: 550,
+                            minWidth: 800
+                        }).dialog('open');
+                    }
+                    $.isFunction(options.success) && (options.success)(data, textStatus, jqXHR);
+                }
+            });
+           
+            $('body').removeClass('wait');
+        }
+    }
+</script>
+
+
+<script type="text/template" id="cardTemplate">
+ <form id="dialog" style="display: none;">
+       
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+            <textarea id="Desc" rows="20" style="height: 276px;"></textarea>
+      
+    </form>
+</script>
+
+
+<h2>Index</h2>
+
+
+<a href="#" onclick="showUrlInDialog('Announcement/Amend/0', {modal: false, title: 'Create New', error: function() { alert('Could not load form') }}); return false;">Create new announcement</a>
+
+
+<p>
+
+@{
+    RenderPartialExtensions.RenderPartial(Html, "LatestAnnouncements", Model);
+}
+

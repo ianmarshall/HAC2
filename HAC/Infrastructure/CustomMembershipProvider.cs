@@ -1,10 +1,10 @@
-﻿using System;
+﻿using HAC.Domain.Repositories;
+using System;
 using System.Security.Cryptography;
 using System.Security.Permissions;
 using System.Text;
 using System.Web;
 using System.Web.Security;
-using HAC.Domain.Repositories;
 
 namespace HAC.Infrastructure
 {
@@ -84,7 +84,7 @@ namespace HAC.Infrastructure
             var profile = new ProfileRepository().GetProfile(username);
             if (profile != null)
             {
-                var memUser = new MembershipUser("CustomMembershipProvider", username, profile.Id, profile.Email,
+                var memUser = new MembershipUser("MyMembershipProvider", profile.name + " " + profile.lname, profile.Id, profile.Email,
                                                  string.Empty, string.Empty,
                                                  true, false, DateTime.MinValue,
                                                  DateTime.MinValue,
@@ -162,11 +162,11 @@ namespace HAC.Infrastructure
 
         public override bool ValidateUser(string username, string password)
         {
-           // var md5Hash = GetMd5Hash(password);
+            // var md5Hash = GetMd5Hash(password);
             var profile = new ProfileRepository().GetProfile(username);
 
             return (profile != null && profile.password == password);
-            
+
         }
 
         public static string GetMd5Hash(string value)
