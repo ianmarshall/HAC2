@@ -1,0 +1,15 @@
+﻿@model HAC.Domain.Announcement
+@using (Html.BeginForm("Save", "Announcement", FormMethod.Post, new { id = "AnnouncementForm", @class = "dialogForm" }))
+{
+    <fieldset>
+        <div id="wrapper">
+        <label for="Title">Title</label>
+        @Html.TextBoxFor(model => model.Title, new { id = "Title", @class = "text ui-widget-content ui-corner-all" })
+        <label for="ExpiryDateForEdit">Expiry Date</label>
+        @Html.TextBoxFor(model => model.ExpiryDateForEdit, new { id = "ExpiryDateForEdit", @class = "text ui-widget-content ui-corner-all" })
+       </div>
+             <label for="Description">Description</label>
+        @Html.TextAreaFor(model => model.Description, new { rows = 15, cols = 120 })
+        @Html.HiddenFor(model => model.ID)
+    </fieldset>
+}

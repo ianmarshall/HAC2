@@ -1,0 +1,54 @@
+﻿@using HAC.Domain
+@model pic_categories
+@*<td>
+    <table width="145" border="0" cellspacing="1" cellpadding="0" bgcolor="#333333" height="120">
+        <tr>
+            <td align="left" valign="top">
+                <table width="100%" border="3" cellspacing="0" cellpadding="0" bgcolor="#CCCCCC" bordercolor="#CCCCCC">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <table border="0" cellspacing="1" cellpadding="0" bgcolor="#000000">
+                                <tr>
+                                    <td align="left" valign="top"><a href="PHOTOS/Category/List/@Model.CAT_ID">
+                                                                      <img src="ThumbnailView/150/100?ImageVPath=@Model.CAT_IMAGE" alt = "@Model.CAT_NAME" border="0" align="absmiddle" width="150" height="100"></a></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="generalTextBold">
+                        <td align="center" valign="middle"><a href="PHOTOS/Category/List/@Model.CAT_ID">@Model.CAT_NAME</a>&nbsp;<font color="#666666">(@Model.pic_images.Count)</font></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</td>*@
+<td>
+    <!-- title-box4 begin -->
+    <div class="indent" id="photoCat">
+        <div class="title-box3">
+            <div class="left">
+                <div class="right">
+                    <div class="category">
+                        <a href="PHOTOS/Category/List/@Model.CAT_ID" class="linkH2">@Model.CAT_NAME</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- title-box4 end -->
+        <!-- box3 begin -->
+        <div class="box3">
+            <div class="right-bot-corner">
+                <div class="left-bot-corner">
+                    <div class="inner1">
+                        <a href="PHOTOS/Category/List/@Model.CAT_ID">
+                            <img src="ThumbnailView/150/100?ImageVPath=@Model.CAT_IMAGE" alt = "@Model.CAT_NAME" border="0" align="absmiddle" width="150" height="100"></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- box3 end -->
+</td>

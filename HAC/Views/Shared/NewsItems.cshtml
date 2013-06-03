@@ -1,0 +1,60 @@
+﻿@using HAC.Domain
+@model List<Event>
+<!-- title-box1 begin -->
+<div class="title-box1">
+    <div class="left-top-corner">
+        <div class="right-top-corner">
+            <div class="right-bot-corner">
+                <div class="left-bot-corner">
+                    <div class="inner">
+                        <div class="wrapper">
+                            <a href="#" class="link3 fright">Archive</a><h3>Top news items</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- title-box1 end -->
+<!-- box1 begin -->
+<div class="box2">
+    <div class="right-bot-corner">
+        <div class="left-bot-corner">
+            <div class="inner">
+
+                @foreach (Event news in Model)
+                {
+                    <!-- events block begin -->
+                    <div class="box3">
+                        <div class="left-top-corner">
+                            <div class="right-top-corner">
+                                <div class="border-top"></div>
+                            </div>
+                        </div>
+                        <div class="border-left">
+                            <div class="border-right">
+                                <div class="inner">
+                                    <div class="extra-wrap">
+                                        <img class="img-indent" alt="" src="@Url.Content("~/Content/images/run_icon.jpg")" />
+                                        @Html.ActionLink(news.Title + " " + news.Date, "Details", "News", new { Id = news.ID }, new { @class = "h6Link" })
+                                        @MvcHtmlString.Create(news.NewsShort) ....
+                                                                            <div class="wrapper"><b>@Html.ActionLink("more info", "Details", "News", new { Id = news.ID }, new { @class = "link1" })</b></div>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="left-bot-corner">
+                            <div class="right-bot-corner">
+                                <div class="border-bot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- events block end -->
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- box1 end -->

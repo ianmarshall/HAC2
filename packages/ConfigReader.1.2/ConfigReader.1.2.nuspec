@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>ConfigReader</id>
+    <version>1.2</version>
+    <title>ConfigReader</title>
+    <authors>Reshef Mann</authors>
+    <owners>Reshef Mann</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.html</licenseUrl>
+    <projectUrl>http://github.com/TroyGoode/ConfigReader</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Type-safe, convention-over-configuration access to the .Net application configuration, web.config, or other configuration source.</description>
+    <summary>Type-safe, convention-over-configuration access to the .Net application configuration, web.config, or other configuration source.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>configuration config conventions defaults</tags>
+    <references>
+      <reference file="ConfigReader.dll" />
+    </references>
+  </metadata>
+</package>

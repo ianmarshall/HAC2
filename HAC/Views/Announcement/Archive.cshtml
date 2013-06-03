@@ -1,0 +1,92 @@
+﻿@using PagedList
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+
+<div id="page2">
+    <div id="content">
+        <div class="indent">
+            <div class="col-5">
+                <!-- title-box1 begin -->
+                <div class="title-box1">
+                    <div class="left-top-corner1">
+                        <div class="right-top-corner1">
+                            <div class="right-bot-corner">
+                                <div class="left-bot-corner">
+                                    <div class="inner">
+                                        <div class="wrapper">
+                                            <h3>Archive</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- title-box1 end -->
+                <!-- box1 begin -->
+                <div class="box1">
+                    <div class="right-bot-corner">
+                        <div class="left-bot-corner">
+                            <div class="inner">
+
+                                <div class="box2">
+                                    <div class="inner1">
+                                        <div class="wrapper">
+                                               @Html.PagedListPager((IPagedList)ViewBag.OnePageOfAnnouncements, page => Url.Action("Archive", new { page }))
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- events block begin -->
+                                @foreach (var announcement in ViewBag.OnePageOfAnnouncements)
+                                {
+                                    <div class="box2" id="announcement@(announcement.ID)">
+                                        <div class="left-top-corner">
+                                            <div class="right-top-corner">
+                                                <div class="border-top"></div>
+                                            </div>
+                                        </div>
+                                        <div class="border-left">
+                                            <div class="border-right">
+                                                <div class="inner1">
+                                                    <img class="img-indent" alt="" src="@Url.Content("~/Content/Images/announce_icon_white.gif")" />
+                                                    <div class="extra-wrap">
+                                                        <h5 class="alt1">@announcement.Title</h5>
+                                                        <h6 class="alt1">Expires: @announcement.ExpiryDateForDisplay</h6>
+                                                        @Html.Raw(announcement.Description)
+                                                        <div class="postedby">
+                                                            Posted by @announcement.UserName on @announcement.CreateDate.ToString("d") - Expires on @announcement.ExpiryDate.ToString("d")
+                                                        </div>
+                                                        <div class="wrapper"><a href="#"  onclick="showAnnounceFormInDialog('Announcement/Amend/@announcement.ID', {modal: false, title: 'Edit Announcement', error: function() { alert('Could not load form') }}); return false;" class="link1"><em><b>edit</b></em></a></div>
+
+                                                    </div>
+                                                    <div class="clear"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="left-bot-corner">
+                                            <div class="right-bot-corner">
+                                                <div class="border-bot"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- events block end -->
+                            </div>
+                            <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
+                            @Html.PagedListPager((IPagedList)ViewBag.OnePageOfAnnouncements, page => Url.Action("Archive", new { page }))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

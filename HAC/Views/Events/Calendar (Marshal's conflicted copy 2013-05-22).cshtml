@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Events Calendar";
+}
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/fullcalendar.css")" />
+<script type='text/javascript' src="@Url.Content("~/Scripts/fullcalendar.js")"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // page is now ready, initialize th.e calendar...
+
+        $('#calendar').fullCalendar({
+            theme: true,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek'
+            },
+            height: 500,
+            editable: false,
+            eventSources: [{
+                url: '@Url.Action("CalendarData", "Events")',
+                type: 'GET',
+                color: 'yellow',   // a non-ajax option
+                textColor: 'black' // a non-ajax option
+            }],
+            eventClick: function (event) {
+                showEventFormInDialog('Events/Amend/' + event.ID, { modal: false, title: 'Add an Event', error: function () { alert('Could not load form'); }});
+            }
+
+            // put your options and callbacks here
+        });
+
+    });
+    
+
+    function showEventFormInDialog(url, options) {
+        if ($("#event").length == 0) {
+            $('body').addClass('wait');
+            options = options || {};
+            var tag = $("<div id='event'></div>"); //This tag will the hold the dialog content.
+
+            $.ajax({
+                url: url,
+                type: (options.type || 'GET'),
+                beforeSend: options.beforeSend,
+                error: options.error,
+                complete: options.complete,
+                success: function (data, textStatus, jqXHR) {
+                    if (typeof data == "object" && data.html) { //response is assumed to be JSON
+                        tag.html(data.html).dialog({ modal: options.modal, title: data.title }).dialog('open');
+                    } else { //response is assumed to be HTML
+                        tag.html(data).dialog({
+                            close: function (ev, ui) {
+                                //$(this).remove();
+                                // $("#announce").remove();
+                                $(".redactor_dropdown").remove();
+                                $(this).remove();
+
+                            },
+
+                            open: function (ev, ui) {
+                                $('#Date').datepicker({ dateFormat: "yy-mm-dd", minDate: new Date() });
+                                //$('#Description').redactor({ autoresize: false });
+
+
+                            },
+                            buttons: {
+                                "Save": function () {
+
+                                    $("#AnnouncementForm").submit();
+                                },
+                                Cancel: function () {
+                                    $(this).dialog("close");
+                                }
+                            },
+
+                            modal: options.modal,
+                            title: options.title,
+                            width: 700,
+                            minWidth: 400,
+                            minHeight: 400,
+                            height: 500
+                        }).dialog('open');
+                    }
+                    $.isFunction(options.success) && (options.success)(data, textStatus, jqXHR);
+                }
+            });
+
+            $('body').removeClass('wait');
+        }
+    }
+
+</script>
+
+<div id="page2">
+    <div id="content">
+        <div class="indent">
+            <!-- title-box2 begin -->
+            <div class="title-box2">
+                <div class="left-top-corner1">
+                    <div class="right-top-corner1">
+                        <div class="right-bot-corner">
+                            <div class="left-bot-corner">
+                                <div class="inner">
+                                    <h3>Events Calendar</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- title-box2 end -->
+            <!-- box3 begin -->
+            <div class="box3">
+                <div class="right-bot-corner">
+                    <div class="left-bot-corner">
+                        <div class="inner2" id="calendar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

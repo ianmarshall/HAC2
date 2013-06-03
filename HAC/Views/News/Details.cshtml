@@ -1,0 +1,55 @@
+﻿@using System.Web.Mvc.Html
+@using HAC.Domain
+@using HAC.Models
+@model HAC.Models.NewsModel
+@{
+    ViewBag.Title = "Item";
+}
+<div id="page3">
+    <div id="content">
+
+        <div class="indent">
+            <div class="row-1">
+                <div class="wrapper">
+                    <div class="col-1">
+                        <div class="ind">
+  <!-- title-box2 begin -->
+                           <div class="title-box2">
+                              <div class="left-top-corner1">
+                                 <div class="right-top-corner1">
+                                    <div class="right-bot-corner">
+                                       <div class="left-bot-corner">
+                                          <div class="inner">
+                                             <div class="wrapper"><h3> @Model.NewsItem.Title - @Model.NewsItem.Date</h3></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- title-box2 end -->
+                           <!-- box3 begin -->
+                           <div class="box3">
+                              <div class="right-bot-corner">
+                                 <div class="left-bot-corner">
+                                    <div class="inner2">
+                                       <h5>@Model.NewsItem.Title</h5>
+                                        @Html.Raw(Model.NewsItem.news1)
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                      @{
+                                RenderPartialExtensions.RenderPartial(Html, "NewsItems", Model.NewsItems);
+                            }
+                        <!-- box1 end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

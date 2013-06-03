@@ -1,0 +1,74 @@
+﻿@using HAC.Domain
+@model List<Event>
+<!-- title-box4 begin -->
+
+<div class="title-box4">
+    <div class="left">
+        <div class="right">
+            <div class="wrapper">
+                <a href="#" class="link6 fright">All Events</a><h2>Next Events</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- title-box4 end -->
+<!-- box3 begin -->
+<div class="box3">
+    <div class="right-bot-corner">
+        <div class="left-bot-corner">
+            <div class="inner1">
+                <script>
+                    $(document).ready(function () {
+                        $("#latestEvents a").click(function () {
+
+                            var href = $(this).attr("href");
+
+                            if (href) {
+                                $(href).dialog({
+                                    modal: true,
+                                    minWidth: 400,
+                                    buttons: {
+                                        Ok: function () {
+                                            $(this).dialog("close");
+                                        }
+
+                                    }
+                                });
+                            }
+                        });
+                    });
+
+                </script>
+                @foreach (Event ev in Model)
+                {
+                    <div id="@ev.ID" class="dialog" title="Upcoming Event" style="display:none">
+                        <p id="title">@ev.Title  test</p>
+                        <p id="wrapper">Location: @ev.Location</p>
+                        <p>Date: @ev.Date</p>
+                        <p>Description: @ev.Description</p>
+                        <p>URL: <a target="_new" href="@ev.URL">@ev.URL</a></p>
+                        <div id="postedby">Posted by @ev.name @ev.lname on @ev.udate</div>
+                    </div>
+   
+                }
+                <ul class="list1" id="latestEvents">
+
+                    @foreach (Event ev in Model)
+                    {
+                        <li>
+                            <div>
+                                @ev.Date @Html.ActionLink("ICS", "ICal", "Events",  new { id = @ev.ID }, null)
+                            </div>
+                            <a href="#@ev.ID">@ev.Title</a></li>
+                    }
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- box3 end -->
+
+
+

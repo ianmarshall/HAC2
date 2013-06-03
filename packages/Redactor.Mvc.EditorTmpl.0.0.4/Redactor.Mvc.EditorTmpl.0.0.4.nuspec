@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Redactor.Mvc.EditorTmpl</id>
+    <version>0.0.4</version>
+    <title>Redactor.Mvc.EditorTmpl</title>
+    <authors>ziyasal</authors>
+    <owners>ziyasal</owners>
+    <projectUrl>http://imperavi.com/redactor/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Redactor.Mvc.EditorTmpl simple editor template Asp.NET MVC</description>
+    <summary>Redactor.Mvc.EditorTmpl simple editor template Asp.NET MVC</summary>
+    <releaseNotes />
+    <copyright />
+    <language>en-US</language>
+    <tags>asp.net mvc redactor jquery editor template</tags>
+    <dependencies>
+      <dependency id="Redactor" version="8.1.0" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>
