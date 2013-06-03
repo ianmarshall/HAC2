@@ -1,5 +1,6 @@
 ﻿using HAC.Domain;
 using HAC.Domain.Repositories;
+using PagedList;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,6 +18,17 @@ namespace HAC.Controllers
             var announcementRepository = new AnnouncementRepository();
             var activeAnnouncements = announcementRepository.GetActiveAnnouncements().ToList();
             return View(activeAnnouncements);
+        }
+
+        public object Archive(int? page)
+        {
+            var announcementRepository = new AnnouncementRepository();
+            var archivedAnnouncements = announcementRepository.GetArchivedAnnouncements();
+            var pageNumber = page ?? 0; // if no page was specified in the querystring, default to the first page (1)
+            var onePageOfAnnouncements = archivedAnnouncements.ToPagedList(pageNumber, 10); // will only contain 25 products max because of the pageSize
+
+            ViewBag.OnePageOfAnnouncements = onePageOfAnnouncements;
+            return View("Archive");
         }
 
         //
@@ -49,7 +61,19 @@ namespace HAC.Controllers
         public ActionResult Amend(int id)
         {
             var announcementRepository = new AnnouncementRepository();
-            var announcement = announcementRepository.GetAnnouncementById(id);
+            Announcement announcement;
+            if (id > 0)
+            {
+                announcement = announcementRepository.GetAnnouncementById(id);
+            }
+            else
+            {
+                announcement = new Announcement()
+                    {
+                        ExpiryDate = System.DateTime.Today
+                    };
+            }
+
             return PartialView("Amend", announcement);
         }
 
@@ -72,11 +96,11 @@ namespace HAC.Controllers
                 announcement.LastModified = DateTime.Now.Date;
                 announcementRepository.Save(announcement);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                throw (ex);
             }
         }
 

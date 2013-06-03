@@ -11,8 +11,15 @@
       <mvcSiteMapNode title="Contacts" controller="AboutUs" action="Contacts"/>
       <mvcSiteMapNode title="History" controller="AboutUs" action="History"/>
     </mvcSiteMapNode>
-    <mvcSiteMapNode title="EVENTS" controller="Events" action="Index"/>
-    <mvcSiteMapNode title="NEWS" controller="News" action="Index"/>
+    <mvcSiteMapNode title="EVENTS" controller="Events" action="Calendar">
+      <mvcSiteMapNode title="Calendar" controller="Events" action="Calendar"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="NEWS" controller="News" action="Details">
+      <mvcSiteMapNode title="News Items" controller="News" action="Details"/>
+      <mvcSiteMapNode title="Club Announcements" controller="Announcement" action="Index"/>
+      
+       <mvcSiteMapNode title="Announcements Archive" controller="Announcement" action="Archive"/>
+    </mvcSiteMapNode>
     <mvcSiteMapNode title="JUNIORS" controller="Juniors" action="Index"/>
     <mvcSiteMapNode title="TRACK &amp; FIELD" controller="TrackAndField" action="Index"/>
     <mvcSiteMapNode title="ROAD RUNNERS" controller="RoadRunners" action="Index">
@@ -20,11 +27,11 @@
     </mvcSiteMapNode>
     <mvcSiteMapNode title="PHOTOS" controller="PHOTOS" action="Index">
       <mvcSiteMapNode title="Categories" controller="PHOTOS" action="Index"/>
-        <mvcSiteMapNode title="Category" controller="Category" action="List" visibility="false"/>
-      
+      <mvcSiteMapNode title="Category" controller="Category" action="List" visibility="false"/>
+
       <mvcSiteMapNode title="Add Photos" controller="PHOTOS" action="Add"/>
     </mvcSiteMapNode>
-    
+
     <mvcSiteMapNode title="RECORDS &amp; PBs" controller="Records" action="Index"/>
 
     <mvcSiteMapNode title="ST IVES 10K" controller="StIves10k" action="Index">

@@ -13,11 +13,11 @@ body {
     font-size: 100%;
     line-height: 1em;
     color: #363534;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-  body.wait {
+    body.wait {
         cursor: wait;
     }
 
@@ -31,62 +31,6 @@ input, select, textarea {
     cursor: wait !important;
 }
 
-.dialog {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 62.5%;
-}
-
-.ui-dialog .ui-state-error {
-    padding: .3em;
-}
-
-.signin {
-    display: block;
-    font-size: 62.5%;
-}
-
-    .signin #title {
-        font-size: 62.5%;
-        font-weight: bold;
-    }
-
-.ui-dialog .ui-dialog-title {
-    float: left;
-    margin: .1em 12px .1em 0;
-}
-
-.validateTips {
-    border: 1px solid transparent;
-    padding: 0.3em;
-}
-
-
-.signin fieldset {
-    padding: 0;
-    border: 0;
-    margin-top: 25px;
-}
-
-.signin input.text {
-    margin-bottom: 12px;
-    width: 95%;
-    padding: .4em;
-}
-
-.signin label, .signin input {
-    display: block;
-}
-
-.dialog #title {
-    font-weight: bold;
-}
-
-.dialog #postedby {
-    text-align: left;
-    border-top: 1px solid black;
-    background-image: none;
-    padding: .3em 1em .5em .4em;
-}
 
 div#users-contain {
     width: 350px;
@@ -153,7 +97,7 @@ div#users-contain {
 }
 
 p {
-    margin-bottom: 16px;
+    margin-bottom: 11px;
 }
 
 /*==================forms====================*/
@@ -216,20 +160,29 @@ ul {
         .nav li a {
             background: url(images/divider.gif) no-repeat left top;
             padding: 0 15px 0 16px;
-            color: darkgray;
+            color: black;
             font-weight: bold;
             text-decoration: none;
             text-transform: uppercase;
         }
 
-#navActive {
-    background: url(images/divider.gif) no-repeat left top;
+            .nav li a:hover {
+                text-decoration: underline;
+            }
+
+
+#navActive a {
+    /*background: url(images/divider.gif) no-repeat left top;*/
     padding: 0 15px 0 16px;
     color: red;
     font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
 }
+
+    #navActive a:hover {
+        text-decoration: underline;
+    }
 
 .nav li a:hover {
     color: #000;
@@ -267,16 +220,30 @@ ul {
     text-decoration: underline;
 }
 
+#path {
+    padding-bottom: 4px;
+    /*font-weight: bold;*/
+    color: white;
+    width: 100%;
+}
+
+    #path a {
+        /*font-weight: bold;*/
+        color: white;
+    }
+
 .news {
     background: url(images/news-bg.gif) left bottom repeat-x;
     padding: 0 0 0 10px;
+    display: block;
 }
 
     .news dt {
-        font-size: .91em;
+        /*font-size: .91em;*/
         color: #9f9386;
         font-family: Tahoma, Geneva, sans-serif;
         margin-bottom: 3px;
+        padding-top: 3px;
         padding-left: 10px;
     }
 
@@ -298,20 +265,86 @@ ul {
 
         .news dd a:hover {
             text-decoration: underline;
+            background: white;
         }
 
-    .news dd {
-        border-bottom: 1px solid #d6d2cd;
-        margin-bottom: 14px;
-        line-height: 1.36em;
-        padding: 0 0 15px 10px;
+a.fillthediv {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+}
+
+.announcement {
+    border-bottom: 1px solid #d6d2cd;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    margin-left: 10px;
+    margin-bottom: 3px;
+}
+
+    .announcement #title {
+        font-family: Tahoma, Geneva, sans-serif;
+        margin-bottom: 3px;
+        padding-top: 3px;
+        color: #164C7A;
+        text-decoration: none;
+        font-weight: bold;
+        font-weight: bold;
     }
 
-        .news dd.last {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 13px;
+    .announcement #description {
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        padding: 0 5px 5px 0;
+        line-height: 1.36em;
+    }
+
+    .announcement a {
+        padding: 0 0 0 10px;
+        background: url(images/news-bg.gif) left bottom repeat-x;
+    }
+
+        .announcement a:hover {
+            background: white;
         }
+
+a.newsLink {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+}
+
+
+.newsItem a:hover {
+    background: gray;
+}
+
+
+.news dd {
+    border-bottom: 1px solid #d6d2cd;
+    /*margin-bottom: 14px;*/
+    line-height: 1.36em;
+    padding-left: 10px;
+}
+
+    .news dd.last {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 13px;
+    }
+
+#announceLatest a {
+    display: block;
+    background: gray;
+    height: 100%;
+    text-align: center;
+}
+
+.news #announceLatest a:hover {
+    background: white;
+}
+
+
 
 .list1 {
     font-size: 1em;
@@ -503,7 +536,7 @@ h3 {
 
 h4 {
     font-size: 1.27em;
-    /*border-bottom: 1px solid #b2aea9;*/
+    border-bottom: 1px solid #b2aea9;
     color: #726d66;
     /*line-height: 1.2em;*/
     padding: 5px 0 4px 0px;
@@ -527,9 +560,23 @@ h6 {
     margin-bottom: 10px;
 }
 
-    h6.alt1 {
-        margin-bottom: 0;
-    }
+.h6Link {
+    font-size: 1em;
+    font-weight: bold;
+    color: #ac4518;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+
+a:hover.h6Link {
+    text-decoration: underline;
+}
+
+h6.alt1 {
+    margin-bottom: 0;
+}
 
 .txt1 {
 }
@@ -849,6 +896,11 @@ h6 {
         padding: 5px 20px 0 9px;
     }
 
+.path-box {
+    width: 20%;
+    color: white;
+}
+
 .logo-box {
     background: url(images/logo-box-bg.gif) left top repeat-x;
     float: left;
@@ -1052,7 +1104,7 @@ h6 {
 
 /*header*/
 #header .inside {
-    padding: 20px 0 0 0;
+    padding: 5px 0 0 0;
 }
 
 #header .row-1 {
@@ -1172,6 +1224,12 @@ h6 {
 }
 
 /*=============MVC PHOTO GALLERY=============================*/
+
+#photoCategories {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 /*layout*/
@@ -1357,8 +1415,158 @@ li.folder > a {
     color: Black;
 }
 
-/*.ui-datepicker
-    {
-        z-index: 1003 !important; /* must be > than popup editor (1002) */
-    }*/
+#Description {
+    font-family: Menlo, Monaco, monospace, sans-serif;
+    font-size: 13px;
+    overflow: auto;
+    resize: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+    z-index: 1004;
+    outline: none;
+    border: none;
+    width: 100%;
+}
 
+
+.dialogForm label, .dialogForm input {
+    display: inline-block;
+}
+
+    .dialogForm input.text {
+        margin-bottom: 12px;
+        width: 95%;
+        padding: .4em;
+    }
+
+fieldset {
+    padding: 0;
+    border: 0;
+    margin-top: 25px;
+}
+
+
+
+.ui-dialog h1 {
+    font-size: 1.2em;
+    margin: .6em 0;
+}
+
+div#users-contain {
+    width: 350px;
+    margin: 20px 0;
+}
+
+#ExpiryDateForEdit {
+    width: 100px;
+}
+
+.dialogForm#Title {
+    width: 500px;
+}
+
+div#users-contain table {
+    margin: 1em 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    div#users-contain table td, div#users-contain table th {
+        border: 1px solid #eee;
+        padding: .6em 10px;
+        text-align: left;
+    }
+
+.ui-dialog .ui-state-error {
+    padding: .3em;
+}
+
+.validateTips {
+    border: 1px solid transparent;
+    padding: 0.3em;
+}
+
+.ui-dialog {
+    font-size: 0.9em;
+}
+
+#announce {
+    font-size: 0.8em;
+}
+
+/*.dialog {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 62.5%;
+}*/
+
+.signin {
+    display: block;
+    font-size: 62.5%;
+}
+
+    .signin #title {
+        font-size: 62.5%;
+        font-weight: bold;
+    }
+
+/*.ui-dialog .ui-dialog-title {
+    float: left;
+    margin: .1em 12px .1em 0;
+}*/
+
+.validateTips {
+    border: 1px solid transparent;
+    padding: 0.3em;
+}
+
+
+.signin fieldset {
+    padding: 0;
+    border: 0;
+    margin-top: 25px;
+}
+
+.signin input.text {
+    margin-bottom: 12px;
+    width: 95%;
+    padding: .4em;
+}
+
+.signin label, .signin input {
+    display: block;
+}
+
+.ui-dialog #Title {
+    font-weight: bold;
+    width: 400px;
+}
+
+.dialog #postedby {
+    text-align: left;
+    border-top: 1px solid black;
+    background-image: none;
+    padding: .3em 1em .5em .4em;
+}
+
+.PagedList-pager {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+     width: 50%;
+      margin:0px auto;
+}
+
+    .PagedList-pager ul li {
+        margin: .25em;
+        display: inline-block;
+        font-size: 10pt;
+      
+    }
+
+
+    .piccount {
+        display: block;
+    }

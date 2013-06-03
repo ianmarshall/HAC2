@@ -3,7 +3,94 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-@Html.Partial("~/Views/Shared/UnderConstruction.cshtml")
+
+<style>
+    input {
+        width: 375px;
+        display: block;
+        border: 1px solid #999;
+        height: 25px;
+        -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    }
+</style>
+<script>
+    
+    function showEventFormInDialog(url, options) {
+            if ($("#event").length == 0) {
+                $('body').addClass('wait');
+                options = options || {};
+                var tag = $("<div id='event'></div>"); //This tag will the hold the dialog content.
+
+                $.ajax({
+                    url: url,
+                    type: (options.type || 'GET'),
+                    beforeSend: options.beforeSend,
+                    error: options.error,
+                    complete: options.complete,
+                    success: function(data, textStatus, jqXHR) {
+                        if (typeof data == "object" && data.html) { //response is assumed to be JSON
+                            tag.html(data.html).dialog({ modal: options.modal, title: data.title }).dialog('open');
+                        } else { //response is assumed to be HTML
+                            tag.html(data).dialog({
+                                close: function(ev, ui) {
+                                    //$(this).remove();
+                                    // $("#announce").remove();
+                                    $(".redactor_dropdown").remove();
+                                    $(this).remove();
+
+                                },
+
+                                open: function(ev, ui) {
+                                    $('#Date').datepicker({ dateFormat: "yy-mm-dd", minDate: new Date() });
+                                    //$('#Description').redactor({ autoresize: false });
+
+
+                                },
+                                buttons: {
+                                    "Save": function () {
+
+                                        $("#AnnouncementForm").submit();
+                                    },
+                                    Cancel: function() {
+                                        $(this).dialog("close");
+                                    }
+                                },
+
+                                modal: options.modal,
+                                title: options.title,
+                                width: 700,
+                                minWidth: 400,
+                                minHeight: 400,
+                                height: 500
+                            }).dialog('open');
+                        }
+                        $.isFunction(options.success) && (options.success)(data, textStatus, jqXHR);
+                    }
+                });
+
+                $('body').removeClass('wait');
+            }
+        }
+</script>
+<div id="page2">
+    <div id="content">
+
+        <div class="indent">
+            <div class="row-1">
+                <div class="wrapper">
+                    <div id='calendar'></div>
+
+                    <a href="#" class="link1" onclick="showEventFormInDialog('Events/Amend/0', {modal: false, title: 'Add an Event', error: function() { alert('Could not load form') }}); return false;">Add new event</a>
+
+                    @Html.Partial("~/Views/Shared/UnderConstruction.cshtml")
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 ​

@@ -79,6 +79,12 @@ namespace HAC
            );
 
             routes.MapRoute(
+              "NewsDetails", // Nombre de ruta
+              "News/Details/{Id}", // URL con parámetros
+              new { controller = "News", action = "Details", id = 0} // Valores predeterminados de parámetro
+          );
+
+            routes.MapRoute(
               "CategoryList", // Nombre de ruta
               "Category/List/{iCat}", // URL con parámetros
               new { controller = "Category", action = "List", iCat = 0 } // Valores predeterminados de parámetro

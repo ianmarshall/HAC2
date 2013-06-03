@@ -25,12 +25,12 @@
 </td>*@
 <td>
     <!-- title-box4 begin -->
-    <div class="indent">
+    <div class="indent" id="photoCat">
         <div class="title-box3">
             <div class="left">
                 <div class="right">
                     <div class="category">
-                        <a href="PHOTOS/Category/List/@Model.CAT_ID" class="linkH2">@Model.CAT_NAME</a>
+                        <a href="PHOTOS/Category/List/@Model.CAT_ID" class="linkH2">@Model.CAT_NAME </a>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                         <a href="PHOTOS/Category/List/@Model.CAT_ID">
                             <img src="ThumbnailView/150/100?ImageVPath=@Model.CAT_IMAGE" alt = "@Model.CAT_NAME" border="0" align="absmiddle" width="150" height="100"></a>
 
-
+                        <div class="piccount">@Model.pic_images.Count Photos</div>
                     </div>
                 </div>
             </div>

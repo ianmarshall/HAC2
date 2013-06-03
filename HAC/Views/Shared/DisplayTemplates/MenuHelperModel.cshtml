@@ -8,7 +8,7 @@
     {
         if (node.IsCurrentNode || node.Children.FirstOrDefault(x => x.IsCurrentNode) != null)
         {
-            <li id="navActive">@node.Title</li>
+         <li id="navActive">@Html.DisplayFor(m => node)</li>
         }
         else
         {
@@ -26,11 +26,11 @@
         {
             foreach (var child in node.Children)
             {
-                if (child.IsCurrentNode)
+                if (child.IsCurrentNode || child.Children.FirstOrDefault(x => x.IsCurrentNode) != null)
                 {
                     <li id="sub-navActive">@child.Title</li>
                 }
-                else
+                else 
                 {
                     
                       <li>@Html.DisplayFor(m => child)</li>

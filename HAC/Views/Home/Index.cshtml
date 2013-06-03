@@ -5,9 +5,7 @@
     ViewBag.Title = "";
 }
 
-<style>
-  
-</style>
+
 <script>
     jQuery.noConflict();
     (function ($) {
@@ -30,7 +28,7 @@
 
     $(function () {
         $("#accordion").accordion({
-           heightStyle: "fill"
+            heightStyle: "fill"
         });
     });
     //$(function () {
@@ -38,14 +36,14 @@
     //        $("#accordion").accordion();
     //    });
 
-        //$("#accordion-resizer").resizable({
-        //    minHeight: 140,
-        //    //minWidth: 200,
-        //    resize: function () {
-        //        $("#accordion").accordion("refresh");
-        //    }
-        //});
- //   });
+    //$("#accordion-resizer").resizable({
+    //    minHeight: 140,
+    //    //minWidth: 200,
+    //    resize: function () {
+    //        $("#accordion").accordion("refresh");
+    //    }
+    //});
+    //   });
 
 
     //$(document).ready(function () {
@@ -100,20 +98,26 @@
                                                 <div class="inner">
                                                     <div class="wrapper">
                                                         <img class="fleft" src="@Url.Content("~/Content/demo-images/subs.jpg")"/>
-                                                        <div class="extra-wrap" id="accordion-resizer">
+                                                        <div class="extra-wrap">
 
-                                                            <div class="wrapper">
-                                                              
-                                                                @Html.ActionLink("View all announcements (" + (string)@Model.activeAnnouncementsCount.ToString() + ")", "Index", "Announcement", null, new { @Class = "link2 fright" })<h4>Latest Announcements</h4>
-                                                            </div>
-                                                            <!--latest Announcements pv-->
+                                                            @Html.ActionLink("View all announcements (" + (string)@Model.activeAnnouncementsCount.ToString() + ")", "Index", "Announcement", null, new { @Class = "link2 fright" })<h4>Latest Announcements</h4>
 
-                                                            @{
-                                                                RenderPartialExtensions.RenderPartial(Html, "LatestAnnouncements", Model.latestAnnouncements);
+                                                            @foreach (Announcement announcement in Model.latestAnnouncements)
+                                                            {
+                                                                  
+                                                                <div class="announcement">
+
+                                                                    <a class="fillthediv" href="@Url.Action("Index", "Announcement")#announcement@(announcement.ID)">
+                                                                        <div id="title">@announcement.Title</div>
+                                                                        <div id="description">
+                                                                        @Html.Raw(announcement.DescriptionShort) .... 
+                                                                        <img alt="Read more" src="@Url.Content("~/Content/images/marker.gif")"/>
+                                                                            </div>
+                                                                    </a>
+                                                                </div>
                                                             }
-                                                            
+                                                            <!--latest Announcements pv-->
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -169,64 +173,11 @@
                         <div class="wrapper">
                             <div class="col-1">
                                 <div class="ind">
-                                    <!-- title-box1 begin -->
-                                    <div class="title-box1">
-                                        <div class="left-top-corner">
-                                            <div class="right-top-corner">
-                                                <div class="right-bot-corner">
-                                                    <div class="left-bot-corner">
-                                                        <div class="inner">
-                                                            <div class="wrapper">
-                                                                <a href="#" class="link3 fright">Archive</a><h3>Top news items</h3>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- title-box1 end -->
-                                    <!-- box1 begin -->
-                                    <div class="box2">
-                                        <div class="right-bot-corner">
-                                            <div class="left-bot-corner">
-                                                <div class="inner">
 
-                                                    @foreach (Event news in Model.latestNews)
-                                                    {
-                                                        <!-- events block begin -->
-                                                        <div class="box3">
-                                                            <div class="left-top-corner">
-                                                                <div class="right-top-corner">
-                                                                    <div class="border-top"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="border-left">
-                                                                <div class="border-right">
-                                                                    <div class="inner">
-                                                                        <div class="extra-wrap">
-                                                                            <img class="img-indent" alt="" src="@Url.Content("~/Content/images/run_icon.jpg")" />
-                                                                            <h6>@news.Title  @news.Date</h6>
-                                                                            @MvcHtmlString.Create(news.news1.Substring(0, 200)) ....
-                                                                            <div class="wrapper"><a href="#" class="link1"><em><b>more info</b></em></a></div>
-                                                                        </div>
-                                                                        <div class="clear"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="left-bot-corner">
-                                                                <div class="right-bot-corner">
-                                                                    <div class="border-bot"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- events block end -->
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- box1 end -->
+                                    @{
+                                        RenderPartialExtensions.RenderPartial(Html, "NewsItems", Model.latestNews);
+                                    }
+
                                 </div>
                             </div>
                             <div class="col-2">
@@ -380,4 +331,4 @@ Congratulations to everyone!
         <img src="${UrlThumbnail}" />
     </a>
 
-                                                                </script>
+</script>

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HAC.Domain.Repositories;
+using HAC.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace HAC.Controllers
 {
     public class NewsController : Controller
     {
-        //
-        // GET: /News/
+        private EventRepository eventRepository = new EventRepository();
 
         public ActionResult Index()
         {
@@ -21,7 +19,12 @@ namespace HAC.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var newsModel = new NewsModel()
+                {
+                    NewsItems = eventRepository.GetLatestNews(8).ToList(),
+                    NewsItem = id > 0 ? eventRepository.GetNewsEvent(id) : eventRepository.GetLatestNews(1).FirstOrDefault()
+                };
+            return View("Details", newsModel);
         }
 
         //
@@ -30,7 +33,7 @@ namespace HAC.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /News/Create
@@ -49,10 +52,10 @@ namespace HAC.Controllers
                 return View();
             }
         }
-        
+
         //
         // GET: /News/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             return View();
@@ -67,7 +70,7 @@ namespace HAC.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
@@ -78,7 +81,7 @@ namespace HAC.Controllers
 
         //
         // GET: /News/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             return View();
@@ -93,7 +96,7 @@ namespace HAC.Controllers
             try
             {
                 // TODO: Add delete logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch

@@ -1,19 +1,13 @@
 ﻿@using HAC.Domain
 @using System
 @model List<Announcement>
-<dl class="news" id="accordion">
+<dl class="news">
 
     @foreach (Announcement announcement in Model)
     {
        
         <dt>@announcement.Title</dt>
-        <dd>@Html.Raw(announcement.Description)
-
-            <div class="postedby">
-                Posted by @announcement.UserName on @announcement.CreateDate.ToString("d") - Expires on @announcement.ExpiryDate.ToString("d")
-                <br/>
-             <a href="#" onclick="showUrlInDialog('Announcement/Amend/@announcement.ID', {modal: false, title: 'Edit', error: function() { alert('Could not load form') }}); return false;">Edit</a>
-            </div>
+        <dd>@Html.Raw(announcement.Title)
         </dd>
     }
     @* <dt>St Ives 10k - 21st July 2013</dt>

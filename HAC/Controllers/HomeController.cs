@@ -18,7 +18,7 @@ namespace HAC.Controllers
 
             HomeModel homeModel = new HomeModel()
                 {
-                    latestAnnouncements = announcementRepository.GetLatestAnnouncements(3).ToList(),
+                    latestAnnouncements = announcementRepository.GetLatestAnnouncements(4).ToList(),
                     activeAnnouncementsCount = announcementRepository.GetActiveAnnouncements().Count(),
                     latestEvents = eventRepository.GetLatestEvents(6).ToList(),
                     latestNews = eventRepository.GetLatestNews(3).ToList(),
