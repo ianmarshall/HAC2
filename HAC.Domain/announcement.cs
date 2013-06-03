@@ -7,18 +7,48 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using HAC.Domain.Tools;
+
 namespace HAC.Domain
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Announcement
     {
         public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+
+        public string DescriptionNoHTML
+        {
+            get { return TextTools.StripHtmlTagByCharArray(Description); }
+        }
+
+        public string DescriptionShort
+        {
+            get { return DescriptionNoHTML.Substring(0, DescriptionNoHTML.Length > 150 ? 150 : DescriptionNoHTML.Length); }
+        }
+
         public System.DateTime CreateDate { get; set; }
         public System.DateTime ExpiryDate { get; set; }
+        public string ExpiryDateForDisplay
+        {
+            get
+            {
+                return this.ExpiryDate.ToString("d");
+            }
+
+        }
+
+        public string ExpiryDateForEdit
+        {
+            get
+            {
+                return this.ExpiryDate.ToString("yyyy-MM-dd");
+            }
+
+            set { ExpiryDate = DateTime.Parse(value); }
+        }
         public System.DateTime LastModified { get; set; }
         public Nullable<int> UserId { get; set; }
         public string UserName { get; set; }

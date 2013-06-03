@@ -1,36 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Security;
-using HAC.Domain;
 
 namespace HAC.Domain.Repositories
 {
-   
-  public class EventRepository
+
+    public class EventRepository
     {
-      private HACEntities context = new HACEntities();
+        private HACEntities context = new HACEntities();
 
         public void Save(Event _event)
         {
-            context.Events.Add(_event);
+            if (_event.ID == 0)
+            {
+                context.Events.Add(_event);
+            }
+            else
+            {
+                context.Entry(_event).State = EntityState.Modified;
+            }
             context.SaveChanges();
         }
-        
-           
 
-            public IQueryable<Event> GetLatestEvents(int count)
-            {
-              
-                
+        public IQueryable<Event> GetLatestEvents(int count)
+        {
+            return context.Events.Where(e => e.Date >= DateTime.Now).OrderBy(e => e.Date).Take(count);
+        }
 
-                return context.Events.Where(e => e.Date >= DateTime.Now).OrderBy(e => e.Date).Take(count);
-            }
+        public IQueryable<Event> GetAllForthcomingEvents()
+        {
+            return context.Events.Where(e => e.Date >= DateTime.Now).OrderBy(e => e.Date);
+        }
 
-            public IQueryable<Event> GetLatestNews(int count)
-            {
-                return context.Events.Where(e => e.Date <= DateTime.Now && e.news1.Length > 1).OrderByDescending(e => e.Date).Take(count);
-            }
-        
+        public IQueryable<Event> GetEvents(DateTime fromDate, DateTime toDate)
+        {
+            return context.Events.Where(e => e.Date >= fromDate && e.Date <= toDate).OrderBy(e => e.Date);
+        }
+
+        public IQueryable<Event> GetLatestNews(int count)
+        {
+            return context.Events.Where(e => e.Date <= DateTime.Now && e.news1.Length > 1).OrderByDescending(e => e.Date).Take(count);
+        }
+
+        public Event GetNewsEvent(int id)
+        {
+            return context.Events.SingleOrDefault(e => e.ID == id);
+        }
+
+       
+
     }
 }

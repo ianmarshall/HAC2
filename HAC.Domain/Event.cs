@@ -6,12 +6,12 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+using HAC.Domain.Tools;
 
 namespace HAC.Domain
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Event
     {
         public int ID { get; set; }
@@ -24,9 +24,26 @@ namespace HAC.Domain
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
+
+        public string DescriptionShort
+        {
+            get { return TextTools.StripHtmlTagByCharArray(Description); }
+        }
+
         public string URL { get; set; }
         public string show_news { get; set; }
         public string news1 { get; set; }
+
+        public string newsNoHTML
+        {
+            get { return TextTools.StripHtmlTagByCharArray(news1); }
+        }
+
+        public string NewsShort
+        {
+            get { return newsNoHTML.Substring(0, newsNoHTML.Length > 150 ? 150 : newsNoHTML.Length); }
+        }
+
         public string news2 { get; set; }
         public Nullable<int> resultid { get; set; }
         public byte[] photo { get; set; }
